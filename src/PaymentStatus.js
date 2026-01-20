@@ -5,7 +5,7 @@ import axios from "axios";
 // Configure these
 const BACKEND_URL =
   process.env.REACT_APP_BACKEND_URL ||
-  "http://api.idteventmanagement.online/api"; // Default Backend
+  "https://api.idteventmanagement.online/api";
 const APP_SCHEME = "idtapp://idt.app/payment-callback"; // Deep Link Scheme
 
 const PaymentStatus = () => {
