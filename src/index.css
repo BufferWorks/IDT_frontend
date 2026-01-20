@@ -1,13 +1,31 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Play";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local("Play"),
+    url(https://fonts.gstatic.com/s/play/v17/6aez4K2oVqwId0T5.woff2)
+      format("woff2");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: "Play";
+  font-style: normal;
+  font-weight: 700;
+  src:
+    local("Play Custom"),
+    url(https://fonts.gstatic.com/s/play/v17/6aez4K2oVqwId0T5.woff2)
+      format("woff2"); /* Fallback / Reuse */
+}
+
+/* Custom Utilities for Glassmorphism & Animations */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
