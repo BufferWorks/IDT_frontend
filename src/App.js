@@ -8,6 +8,14 @@ import TermsOfService from "./TermsOfService";
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 
+// Admin Imports
+import AdminLayout from "./admin/AdminLayout";
+import AdminDashboard from "./admin/AdminDashboard";
+import AdminLogin from "./admin/AdminLogin";
+import CreateContest from "./admin/CreateContest";
+import ManageContests from "./admin/ManageContests";
+import ContestDetails from "./admin/ContestDetails";
+
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +28,17 @@ function App() {
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
+
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="create-contest" element={<CreateContest />} />
+          <Route path="manage-contests" element={<ManageContests />} />
+          <Route path="contest/:id" element={<ContestDetails />} />
+          {/* Default redirect to dashboard */}
+          <Route index element={<Navigate to="dashboard" replace />} />
+        </Route>
 
         {/* Redirect unknown routes to Landing Page */}
         <Route path="*" element={<Navigate to="/" replace />} />
