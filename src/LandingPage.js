@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   ChevronRight,
@@ -41,12 +42,13 @@ const LandingPage = () => {
               your skills, and win exciting cash prizes.
             </p>
             <div className="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
-              <button className="bg-white text-[#5865F2] hover:bg-gray-100 px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105 shadow-xl flex items-center gap-2">
-                Download App <ArrowRight size={20} />
-              </button>
-              <button className="border-2 border-white/30 hover:bg-white/10 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all">
+              {/* Download button removed */}
+              <Link
+                to="/about"
+                className="border-2 border-white/30 hover:bg-white/10 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all"
+              >
                 Learn More
-              </button>
+              </Link>
             </div>
           </motion.div>
 
@@ -196,9 +198,7 @@ const LandingPage = () => {
               Join thousands of participants and showcase your talent on IDT
               Events today.
             </p>
-            <button className="bg-white text-[#5865F2] hover:bg-gray-50 px-10 py-5 rounded-full font-bold text-xl shadow-lg transition-transform hover:scale-105">
-              Download Now
-            </button>
+            {/* Download button removed */}
           </div>
           {/* Decorative Circles */}
           <div className="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
@@ -220,24 +220,20 @@ const LandingPage = () => {
             <h5 className="font-bold mb-4 text-gray-300">Quick Links</h5>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <a href="#" className="hover:text-white">
+                <Link to="/" className="hover:text-white">
                   Home
-                </a>
+                </Link>
               </li>
+
               <li>
-                <a href="#" className="hover:text-white">
-                  Contests
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
+                <Link to="/about" className="hover:text-white">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white">
+                <Link to="/contact" className="hover:text-white">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -245,14 +241,14 @@ const LandingPage = () => {
             <h5 className="font-bold mb-4 text-gray-300">Legal</h5>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <a href="#" className="hover:text-white">
+                <Link to="/privacy" className="hover:text-white">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white">
+                <Link to="/terms" className="hover:text-white">
                   Terms of Service
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -285,9 +281,7 @@ const Navbar = () => (
       </div>
 
       <div className="flex items-center gap-6">
-        <button className="bg-white text-[#5865F2] px-6 py-2.5 rounded-full font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all text-sm hidden md:block">
-          Download App
-        </button>
+        {/* Download button removed */}
       </div>
     </div>
   </nav>
