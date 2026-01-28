@@ -21,53 +21,134 @@ const TermsOfService = () => {
           className="bg-white rounded-3xl p-8 md:p-12 shadow-xl"
         >
           <h1 className="text-4xl font-extrabold text-[#5865F2] mb-8">
-            Terms of Service
+            Terms & Conditions
           </h1>
 
           <div className="prose prose-lg text-gray-600">
             <p className="mb-6">
-              Last updated: {new Date().toLocaleDateString()}
+              Welcome to IDT Event Management
+              (https://idteventmanagement.online/). These Terms and Conditions
+              outline the rules and regulations for the use of our services and
+              website.
+              <br />
+              This website is managed by Sonu Kumar.
+            </p>
+
+            <p className="mb-6">
+              By accessing this website or booking our services, we assume you
+              accept these terms and conditions. Do not continue to use IDT
+              Event Management if you do not agree to all of the terms stated on
+              this page.
             </p>
 
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              1. Agreement to Terms
+              1. Services Provided
             </h3>
             <p className="mb-6">
-              By accessing our website or using our mobile application, you
-              agree to be bound by these Terms of Service and to the collection
-              and use of your information as set forth in the Privacy Policy. If
-              you do not wish to be bound by these Terms of Service, you may not
-              access or use the Services.
+              IDT Event Management provides event planning, coordination, and
+              management services. The specific scope of work, deliverables, and
+              pricing for each event will be outlined in a separate Service
+              Agreement or Quotation provided to the client.
             </p>
 
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              2. Intellectual Property Rights
+              2. Bookings and Payments
             </h3>
+            <ul className="list-disc pl-6 mb-6 space-y-2">
+              <li>
+                <strong>Deposit:</strong> A non-refundable deposit of is
+                required to secure your event date.
+              </li>
+              <li>
+                <strong>Payment Methods:</strong> We accept payments via Bank
+                Transfer/UPI/Credit Card.
+              </li>
+            </ul>
+
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              3. Cancellation and Refund Policy
+            </h3>
+            <p className="mb-4">
+              We do not provide any kind of refund due to nature of business.
+            </p>
             <p className="mb-6">
-              Other than the content you own, under these Terms, IDT Events
-              and/or its licensors own all the intellectual property rights and
-              materials contained in this Website. You are granted limited
-              license only for purposes of viewing the material contained on
-              this Website.
+              In the event that IDT Event Management must cancel due to
+              unforeseen circumstances, a full refund of all payments made will
+              be issued.
             </p>
 
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              3. Contest Rules
+              4. Client Responsibilities
             </h3>
             <p className="mb-6">
-              Participation in any contest hosted on IDT Events is subject to
-              specific rules and regulations outlined on the respective contest
-              page. By entering a contest, you agree to abide by those specific
-              rules.
+              The client is responsible for providing accurate information
+              regarding event requirements, guest counts, and venue access. IDT
+              Event Management is not liable for delays or issues caused by
+              incomplete or inaccurate information provided by the client.
             </p>
 
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              4. Termination
+              5. Intellectual Property
             </h3>
             <p className="mb-6">
-              We may terminate or suspend your access immediately, without prior
-              notice or liability, for any reason whatsoever, including without
-              limitation if you breach the Terms.
+              Unless otherwise stated, IDT Event Management owns the
+              intellectual property rights for all material on this website,
+              including logos, designs, and text. You may view this for personal
+              use but may not republish or redistribute our content without
+              written consent.
+            </p>
+
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              6. Liability and Indemnity
+            </h3>
+            <p className="mb-4">
+              IDT Event Management will perform services with professional care;
+              however, we are not liable for the actions of third-party vendors
+              (e.g., catering, photography, venues) unless they are direct
+              employees of IDT.
+            </p>
+            <p className="mb-6">
+              The client agrees to indemnify IDT Event Management against any
+              claims for loss, damage, or injury occurring during the event,
+              except in cases of gross negligence by our staff.
+            </p>
+
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              7. Force Majeure
+            </h3>
+            <p className="mb-6">
+              Neither party shall be liable for failure to perform their
+              obligations if such failure is as a result of Acts of God
+              (including fire, flood, earthquake, storm, or other natural
+              disasters), war, government regulations, or pandemics.
+            </p>
+
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              8. Privacy Policy
+            </h3>
+            <p className="mb-6">
+              Your use of our website is also governed by our Privacy Policy. We
+              collect and use your data (such as name and email) solely to
+              process your bookings and communicate regarding our services.
+            </p>
+
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              9. Governing Law
+            </h3>
+            <p className="mb-6">
+              These terms are governed by and construed in accordance with the
+              laws of India, and any disputes will be subject to the exclusive
+              jurisdiction of the courts in India.
+            </p>
+
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              10. Contact Information
+            </h3>
+            <p className="mb-6">
+              If you have any questions about these Terms and Conditions, please
+              contact us at:
+              <br />
+              <strong>Email:</strong> idteventmanagementgwl@gmail.com
             </p>
           </div>
         </motion.div>
