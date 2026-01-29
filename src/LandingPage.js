@@ -68,7 +68,7 @@ const LandingPage = () => {
     const fetchContests = async () => {
       try {
         const res = await axios.get(
-          `https://idteventmanagement.online/api/contests/all`,
+          `https://api.idteventmanagement.online/api/contests/all`,
         );
         // Filter active contests and take top 2
 
