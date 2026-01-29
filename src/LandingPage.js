@@ -8,7 +8,51 @@ import {
   Smartphone,
   Trophy,
   Users,
+  Clock,
+  Calendar,
+  MapPin,
 } from "lucide-react";
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+const ContestCard = ({ contest }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -5 }}
+      className="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer shadow-xl"
+    >
+      <img
+        src={contest.bannerImage}
+        alt={contest.name}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+      <div className="absolute bottom-0 left-0 w-full p-8 text-white">
+        <div className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-xs font-bold mb-4 border border-white/20">
+          {contest.theme || "General"}
+        </div>
+        <h3 className="text-3xl font-bold mb-2 leading-tight">
+          {contest.name}
+        </h3>
+
+        <div className="flex items-center gap-4 text-sm font-medium text-gray-300 mb-6">
+          <span className="flex items-center gap-1">
+            <Trophy size={16} className="text-yellow-400" />₹{contest.prizePool}{" "}
+            Pool
+          </span>
+          <span className="flex items-center gap-1">
+            <Users size={16} className="text-blue-400" />
+            {contest.totalParticipants || 0} Joined
+          </span>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 // Asset Paths (Assumed moved to public/assets/images/)
 const ASSETS = {
@@ -18,6 +62,31 @@ const ASSETS = {
 };
 
 const LandingPage = () => {
+  const [contests, setContests] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchContests = async () => {
+      try {
+        const res = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/contests/all`,
+        );
+        // Filter active contests and take top 2
+
+        const active = (res.data.contests || [])
+          .filter((c) => c.isPublished)
+          .slice(0, 2);
+        setContests(active);
+      } catch (error) {
+        console.error("Error fetching contests:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchContests();
+  }, []);
+
   return (
     <div className="font-sans text-gray-900 bg-white">
       <Navbar />
@@ -73,6 +142,43 @@ const LandingPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* --- DISCOVER CONTESTS SECTION --- */}
+      {contests.length > 0 && (
+        <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+              <div>
+                <h2 className="text-4xl font-extrabold text-[#5865F2] mb-4">
+                  Discover Contests
+                </h2>
+                <p className="text-xl text-gray-600 max-w-2xl">
+                  Explore trending challenges and showcase your talent to the
+                  world.
+                </p>
+              </div>
+              <Link
+                to="/login"
+                className="flex items-center gap-2 font-bold text-gray-900 hover:text-[#5865F2] transition-colors"
+              >
+                View All <ArrowRight size={20} />
+              </Link>
+            </div>
+
+            {loading ? (
+              <div className="flex justify-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#5865F2]"></div>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-8">
+                {contests.map((contest) => (
+                  <ContestCard key={contest._id} contest={contest} />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* --- FEATURES SECTION --- */}
       <section className="py-24 bg-gray-50">
