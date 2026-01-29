@@ -54,7 +54,6 @@ const ContestCard = ({ contest }) => {
   );
 };
 
-// Asset Paths (Assumed moved to public/assets/images/)
 const ASSETS = {
   home: "/assets/images/app_home.jpeg",
   details: "/assets/images/contest_details.jpeg",
