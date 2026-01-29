@@ -61,6 +61,9 @@ const ASSETS = {
   vote: "/assets/images/entry_vote.jpeg",
 };
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+console.log(BACKEND_URL);
+
 const LandingPage = () => {
   const [contests, setContests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -68,9 +71,7 @@ const LandingPage = () => {
   useEffect(() => {
     const fetchContests = async () => {
       try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/contests/all`,
-        );
+        const res = await axios.get(`${BACKEND_URL}/contests/all`);
         // Filter active contests and take top 2
 
         const active = (res.data.contests || [])
