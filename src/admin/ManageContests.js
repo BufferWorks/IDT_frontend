@@ -14,9 +14,10 @@ const ManageContests = () => {
   const fetchContests = async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/contest/all`,
+        `${process.env.REACT_APP_BACKEND_URL}/contests/all`,
       );
-      setContests(res.data);
+      setContests(res.data.contests || []);
+      console.log(res.data);
     } catch (error) {
       console.error("Error fetching contests:", error);
     } finally {
@@ -91,15 +92,21 @@ const ManageContests = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-bold ${
-                          contest.isActive
-                            ? "bg-green-100 text-green-700"
-                            : "bg-red-100 text-red-700"
-                        }`}
-                      >
-                        {contest.isActive ? "Active" : "Inactive"}
-                      </span>
+                      {(() => {
+                        const isActive =
+                          new Date() < new Date(contest.registrationEndAt);
+                        return (
+                          <span
+                            className={`px-3 py-1 rounded-full text-xs font-bold ${
+                              isActive
+                                ? "bg-green-100 text-green-700"
+                                : "bg-red-100 text-red-700"
+                            }`}
+                          >
+                            {isActive ? "Active" : "Inactive"}
+                          </span>
+                        );
+                      })()}
                     </td>
                     <td className="px-6 py-4 text-gray-600 font-medium">
                       <div className="flex items-center gap-2">
@@ -115,11 +122,13 @@ const ManageContests = () => {
                             Reg:{" "}
                             {new Date(
                               contest.registrationEndAt,
-                            ).toLocaleDateString()}
+                            ).toLocaleDateString("en-GB")}
                           </p>
                           <p>
                             Vote:{" "}
-                            {new Date(contest.votingEndAt).toLocaleDateString()}
+                            {new Date(contest.votingEndAt).toLocaleDateString(
+                              "en-GB",
+                            )}
                           </p>
                         </div>
                       </div>
