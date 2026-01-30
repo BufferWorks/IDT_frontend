@@ -166,12 +166,12 @@ const LandingPage = () => {
                   world.
                 </p>
               </div>
-              <Link
+              {/* <Link
                 to="/login"
                 className="flex items-center gap-2 font-bold text-gray-900 hover:text-[#5865F2] transition-colors"
               >
                 View All <ArrowRight size={20} />
-              </Link>
+              </Link> */}
             </div>
 
             {loading ? (
