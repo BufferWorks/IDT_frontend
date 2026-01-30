@@ -11,6 +11,7 @@ import {
   Clock,
   Calendar,
   MapPin,
+  Ticket,
 } from "lucide-react";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -39,10 +40,19 @@ const ContestCard = ({ contest }) => {
           {contest.name}
         </h3>
 
+        {/* Description */}
+        <p className="text-sm text-gray-200 mb-4 line-clamp-2">
+          {contest.description}
+        </p>
+
         <div className="flex items-center gap-4 text-sm font-medium text-gray-300 mb-6">
           <span className="flex items-center gap-1">
             <Trophy size={16} className="text-yellow-400" />₹{contest.prizePool}{" "}
             Pool
+          </span>
+          <span className="flex items-center gap-1">
+            <Ticket size={16} className="text-green-400" />
+            {contest.entryFee > 0 ? `₹${contest.entryFee}` : "Free"}
           </span>
           <span className="flex items-center gap-1">
             <Users size={16} className="text-blue-400" />
