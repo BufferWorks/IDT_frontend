@@ -17,7 +17,6 @@ const ManageContests = () => {
     try {
       const res = await axios.get(`${API}/contests/all`);
       setContests(res.data.contests || []);
-      console.log(res.data);
     } catch (error) {
       console.error("Error fetching contests:", error);
     } finally {
