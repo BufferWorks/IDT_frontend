@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import axios from "axios";
 
+const API = process.env.REACT_APP_BACKEND_URL;
+
 const CreateContest = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -58,15 +60,11 @@ const CreateContest = () => {
       data.append("votingStartAt", formData.registrationStartAt);
 
       // Assuming backend URL
-      await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/contests/create`,
-        data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+      await axios.post(`${API}/contests/create`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
         },
-      );
+      });
 
       navigate("/admin/manage-contests");
     } catch (error) {

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Edit2, Trash2, Eye, Plus, Calendar, Users } from "lucide-react";
 import axios from "axios";
 
+const API = process.env.REACT_APP_BACKEND_URL;
+
 const ManageContests = () => {
   const [contests, setContests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,9 +15,7 @@ const ManageContests = () => {
 
   const fetchContests = async () => {
     try {
-      const res = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/contests/all`,
-      );
+      const res = await axios.get(`${API}/contests/all`);
       setContests(res.data.contests || []);
       console.log(res.data);
     } catch (error) {

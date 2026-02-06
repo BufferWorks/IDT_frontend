@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import axios from "axios";
 
+const API = process.env.REACT_APP_BACKEND_URL;
+
 const ContestDetails = () => {
   const { id } = useParams();
   const [contest, setContest] = useState(null);
@@ -39,10 +41,8 @@ const ContestDetails = () => {
     const fetchData = async () => {
       try {
         const [contestRes, participantsRes] = await Promise.all([
-          axios.get(`${process.env.REACT_APP_BACKEND_URL}/contests/${id}`),
-          axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}/contests/${id}/participants`,
-          ),
+          axios.get(`${API}/contests/${id}`),
+          axios.get(`${API}/contests/${id}/participants`),
         ]);
         setContest(contestRes.data.contest);
         setParticipants(participantsRes.data.participants || []);
@@ -60,9 +60,7 @@ const ContestDetails = () => {
     try {
       setLoadingEntry(true);
       setSelectedEntryId(entryId);
-      const res = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/contests/entries/${entryId}`,
-      );
+      const res = await axios.get(`${API}/contests/entries/${entryId}`);
       setEntryDetails(res.data.entry);
     } catch (error) {
       console.error("Error fetching entry:", error);
@@ -80,9 +78,7 @@ const ContestDetails = () => {
     try {
       setLoadingWinners(true);
       setShowWinnerModal(true);
-      const res = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/contests/${id}/potential-winners`,
-      );
+      const res = await axios.get(`${API}/contests/${id}/potential-winners`);
       setPotentialWinners(res.data.winners);
     } catch (error) {
       console.error("Error fetching potential winners:", error);
@@ -105,9 +101,7 @@ const ContestDetails = () => {
 
     try {
       setPublishing(true);
-      await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/contests/${id}/publish-winners`,
-      );
+      await axios.post(`${API}/contests/${id}/publish-winners`);
 
       alert("Winners published successfully!");
       setShowWinnerModal(false);
