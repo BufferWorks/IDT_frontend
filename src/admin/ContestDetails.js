@@ -361,12 +361,13 @@ const ContestDetails = () => {
                     </p>
                     <p className="text-xs text-gray-400">
                       {step.date
-                        ? new Date(step.date).toLocaleDateString("en-GB", {
+                        ? new Date(step.date).toLocaleString("en-GB", {
                             day: "2-digit",
                             month: "2-digit",
                             year: "numeric",
                             hour: "2-digit",
                             minute: "2-digit",
+                            timeZone: "UTC",
                           })
                         : "TBA"}
                     </p>
@@ -397,6 +398,9 @@ const ContestDetails = () => {
                   <th className="px-6 py-4 font-bold text-gray-500 text-sm uppercase">
                     Status
                   </th>
+                  <th className="px-6 py-4 font-bold text-gray-500 text-sm uppercase">
+                    Entry
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -426,6 +430,19 @@ const ContestDetails = () => {
                             FREE
                           </span>
                         )}
+                      </td>
+                      <td className="px-6 py-4">
+                        <span
+                          className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold ${
+                            p.status === "DISQUALIFIED"
+                              ? "bg-red-100 text-red-700"
+                              : p.status === "SUBMITTED"
+                                ? "bg-purple-100 text-purple-700"
+                                : "bg-blue-100 text-blue-700"
+                          }`}
+                        >
+                          {p.status || "REGISTERED"}
+                        </span>
                       </td>
                       <td className="px-6 py-4">
                         {hasEntry ? (
