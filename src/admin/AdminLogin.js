@@ -16,22 +16,6 @@ const AdminLogin = () => {
     setError("");
 
     try {
-      // --- BYPASS BACKEND AUTH FOR DEV ---
-      /*
-       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/auth/admin-login`,
-        {
-          email,
-          password,
-        },
-      );
-
-      if (response.data && response.data.token) {
-        localStorage.setItem("adminToken", response.data.token);
-        navigate("/admin/dashboard");
-      }
-      */
-
       // STATIC CHECK
       if (email === "admin@idtevents.com" && password === "admin123") {
         localStorage.setItem("adminToken", "mock-token-for-dev");
