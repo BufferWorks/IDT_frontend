@@ -35,7 +35,7 @@ const ManageContests = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Manage Contests</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Manage Events</h1>
         <Link
           to="/admin/create-contest"
           className="bg-[#5865F2] hover:bg-[#4752c4] text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-[#5865F2]/30 flex items-center gap-2 transition-all"
@@ -50,7 +50,7 @@ const ManageContests = () => {
             <thead>
               <tr className="bg-gray-50 border-b border-gray-100">
                 <th className="px-6 py-4 font-bold text-gray-500 text-sm uppercase tracking-wider">
-                  Contest Name
+                  Event Name
                 </th>
                 <th className="px-6 py-4 font-bold text-gray-500 text-sm uppercase tracking-wider">
                   Status
@@ -124,7 +124,7 @@ const ManageContests = () => {
                             ).toLocaleDateString("en-GB")}
                           </p>
                           <p>
-                            Vote:{" "}
+                            Support:{" "}
                             {new Date(contest.votingEndAt).toLocaleDateString(
                               "en-GB",
                             )}
@@ -154,7 +154,7 @@ const ManageContests = () => {
                     colSpan="5"
                     className="px-6 py-12 text-center text-gray-400"
                   >
-                    No contests found. Click "Create New" to get started.
+                    No events found. Click "Create New" to get started.
                   </td>
                 </tr>
               )}

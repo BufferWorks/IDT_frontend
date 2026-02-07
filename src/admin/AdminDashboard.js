@@ -6,7 +6,7 @@ const AdminDashboard = () => {
   // Placeholder stats
   const stats = [
     {
-      label: "Total Contests",
+      label: "Total Events",
       value: "12",
       icon: <Trophy size={24} className="text-amber-500" />,
       bg: "bg-amber-50",
@@ -24,7 +24,7 @@ const AdminDashboard = () => {
       bg: "bg-blue-50",
     },
     {
-      label: "Total Votes",
+      label: "Total Support",
       value: "45.2k",
       icon: <Activity size={24} className="text-green-500" />,
       bg: "bg-green-50",
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
           <h2 className="text-lg font-bold text-gray-900 mb-4">
-            Recent Contests
+            Recent Events
           </h2>
           <div className="text-center py-10 text-gray-400">
             No recent activity loaded.

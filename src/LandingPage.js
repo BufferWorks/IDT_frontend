@@ -48,7 +48,7 @@ const ContestCard = ({ contest }) => {
         <div className="flex items-center gap-4 text-sm font-medium text-gray-300 mb-6">
           <span className="flex items-center gap-1">
             <Trophy size={16} className="text-yellow-400" />₹{contest.prizePool}{" "}
-            Pool
+            Grant
           </span>
           <span className="flex items-center gap-1">
             <Ticket size={16} className="text-green-400" />
@@ -116,8 +116,8 @@ const LandingPage = () => {
               Unleash Your <span className="text-yellow-300">Talent</span>
             </h1>
             <p className="mt-6 text-xl lg:text-2xl text-blue-100 max-w-2xl mx-auto lg:mx-0">
-              The ultimate platform to participate in model contests, showcase
-              your skills, and win exciting cash prizes.
+              The ultimate platform to participate in model events, showcase
+              your skills, and receive exclusive talent grants.
             </p>
             <div className="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
               {/* Download button removed */}
@@ -159,14 +159,13 @@ const LandingPage = () => {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
               <div>
                 <h2 className="text-4xl font-extrabold text-[#5865F2] mb-4">
-                  Discover Contests
+                  Discover Events
                 </h2>
                 <p className="text-xl text-gray-600 max-w-2xl">
                   Explore trending challenges and showcase your talent to the
                   world.
                 </p>
               </div>
-              
             </div>
 
             {loading ? (
@@ -193,7 +192,7 @@ const LandingPage = () => {
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               We provide a seamless and transparent ecosystem for organizers and
-              pariticipants alike.
+              participants alike.
             </p>
           </div>
 
@@ -205,13 +204,13 @@ const LandingPage = () => {
             />
             <FeatureCard
               icon={<Trophy size={40} className="text-amber-500" />}
-              title="Exciting Prizes"
-              desc="Compete in premium contests and win verified cash rewards."
+              title="Prestigious Awards"
+              desc="Compete in premium events and earn verified talent grants."
             />
             <FeatureCard
               icon={<Users size={40} className="text-pink-500" />}
-              title="Fair Voting"
-              desc="Real-time voting system ensuring transparency and fairness."
+              title="Transparent Judging"
+              desc="Real-time support system ensuring transparency and fairness."
             />
           </div>
         </div>
@@ -251,13 +250,13 @@ const LandingPage = () => {
                   Detailed Insights
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                  Get comprehensive information about every contest, including
-                  prize pools, timelines, rules, and more—all in one elegant
+                  Get comprehensive information about every event, including
+                  grant pools, timelines, rules, and more—all in one elegant
                   view.
                 </p>
                 <ul className="space-y-4 text-left inline-block">
                   <ListItem text="Real-time timeline tracking" />
-                  <ListItem text="Transparent prize breakdown" />
+                  <ListItem text="Transparent grant breakdown" />
                   <ListItem text="Instant registration & payment" />
                 </ul>
               </div>
@@ -280,11 +279,11 @@ const LandingPage = () => {
               </motion.div>
               <div className="lg:w-1/2 text-center lg:text-left">
                 <h3 className="text-3xl font-bold mb-4 text-gray-900">
-                  Engage & Win
+                  Engage & Shine
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed mb-6">
                   Your entry page is your stage. Share it with friends, track
-                  your votes live, and climb the leaderboard to victory.
+                  your support live, and showcase your skills to the top.
                 </p>
                 <ul className="space-y-4 text-left inline-block">
                   <ListItem text="Beautiful entry presentation" />
@@ -323,7 +322,7 @@ const LandingPage = () => {
             <h4 className="text-2xl font-bold mb-4">IDT Events</h4>
             <p className="text-gray-400 max-w-sm">
               The premier platform for organizing and participating in digital
-              talent contests. Empowering creators since 2024.
+              talent events. Empowering creators since 2024.
             </p>
           </div>
           <div>

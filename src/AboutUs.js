@@ -13,7 +13,7 @@ const AboutUs = () => {
     {
       icon: <Users size={32} className="text-pink-500" />,
       title: "Community First",
-      desc: "We believe in building a supportive community where every participant gets fair exposure and equal opportunities to win.",
+      desc: "We believe in building a supportive community where every participant gets fair exposure and equal opportunities to succeed.",
     },
     {
       icon: <Heart size={32} className="text-red-500" />,

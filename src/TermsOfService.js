@@ -45,10 +45,11 @@ const TermsOfService = () => {
               1. Services Provided
             </h3>
             <p className="mb-6">
-              IDT Event Management provides event planning, coordination, and
-              management services. The specific scope of work, deliverables, and
-              pricing for each event will be outlined in a separate Service
-              Agreement or Quotation provided to the client.
+              IDT Event Management provides a platform for skill-based talent
+              events and competitions. Participants submit entries which are
+              evaluated based on merit, creativity, and public support. The
+              specific criteria for each event will be outlined in the event
+              details.
             </p>
 
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -56,8 +57,9 @@ const TermsOfService = () => {
             </h3>
             <ul className="list-disc pl-6 mb-6 space-y-2">
               <li>
-                <strong>Deposit:</strong> A non-refundable deposit of is
-                required to secure your event date.
+                <strong>Registration Fee:</strong> A non-refundable registration
+                fee is required to participate in specific events. This fee
+                covers administrative costs and platform maintenance.
               </li>
               <li>
                 <strong>Payment Methods:</strong> We accept payments via Bank
@@ -69,7 +71,9 @@ const TermsOfService = () => {
               3. Cancellation and Refund Policy
             </h3>
             <p className="mb-4">
-              We do not provide any kind of refund due to nature of business.
+              Registration fees are non-refundable as they cover immediate
+              administrative and platform costs. We do not provide refunds once
+              registration is confirmed.
             </p>
             <p className="mb-6">
               In the event that IDT Event Management must cancel due to
@@ -137,8 +141,9 @@ const TermsOfService = () => {
             </h3>
             <p className="mb-6">
               These terms are governed by and construed in accordance with the
-              laws of India, and any disputes will be subject to the exclusive
-              jurisdiction of the courts in India.
+              laws of India. These events are skill-based competitions and do
+              not fall under gambling laws. Any disputes will be subject to the
+              exclusive jurisdiction of the courts in India.
             </p>
 
             <h3 className="text-2xl font-bold text-gray-900 mb-4">

@@ -126,8 +126,7 @@ const ContestDetails = () => {
     );
   }
 
-  if (!contest)
-    return <div className="text-center py-12">Contest not found</div>;
+  if (!contest) return <div className="text-center py-12">Event not found</div>;
 
   const entries = participants.filter((p) => p.entryId);
 
@@ -191,7 +190,7 @@ const ContestDetails = () => {
 
               {contest.winnersAnnounced && (
                 <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 flex items-center gap-1">
-                  <Trophy size={12} /> Winners Announced
+                  <Trophy size={12} /> Results Declared
                 </span>
               )}
             </div>
@@ -203,11 +202,11 @@ const ContestDetails = () => {
             <div className="flex flex-wrap gap-6 mt-6">
               <div className="flex items-center gap-2 text-gray-700 font-medium">
                 <Trophy size={18} className="text-amber-500" />
-                <span>₹{contest.prizePool} Prize Pool</span>
+                <span>₹{contest.prizePool} Grant Amount</span>
               </div>
               <div className="flex items-center gap-2 text-gray-700 font-medium">
                 <DollarSign size={18} className="text-green-500" />
-                <span>₹{contest.entryFee} Entry</span>
+                <span>₹{contest.entryFee} Registration</span>
               </div>
             </div>
           </div>
@@ -292,7 +291,7 @@ const ContestDetails = () => {
                   onClick={handleAnnounceClick}
                   className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-md shadow-indigo-200 transition-all flex items-center gap-2"
                 >
-                  <Trophy size={16} /> Announce Winners
+                  <Trophy size={16} /> Declare Results
                 </button>
               )}
             </div>
@@ -303,7 +302,7 @@ const ContestDetails = () => {
 
               {[
                 {
-                  label: "Contest Created",
+                  label: "Event Created",
                   date: contest.createdAt,
                   passed: true,
                 },
@@ -318,12 +317,12 @@ const ContestDetails = () => {
                   passed: new Date() >= new Date(contest.registrationEndAt),
                 },
                 {
-                  label: "Voting Starts",
+                  label: "Support Starts",
                   date: contest.votingStartAt,
                   passed: new Date() >= new Date(contest.votingStartAt),
                 },
                 {
-                  label: "Voting Ends",
+                  label: "Support Ends",
                   date: contest.votingEndAt,
                   passed: new Date() >= new Date(contest.votingEndAt),
                 },
@@ -595,7 +594,7 @@ const ContestDetails = () => {
                       </h2>
                       <div className="flex gap-4 mt-1 text-sm text-gray-500">
                         <span>
-                          Total Votes:{" "}
+                          Total Support:{" "}
                           <strong className="text-gray-900">
                             {entryDetails.totalVotes || 0}
                           </strong>
@@ -697,7 +696,7 @@ const ContestDetails = () => {
                   Official Results Preview
                 </h3>
                 <p className="text-sm text-gray-500">
-                  Based on calculated votes from backend
+                  Based on calculated support from backend
                 </p>
               </div>
               <button
@@ -748,7 +747,7 @@ const ContestDetails = () => {
                           {winner.totalVotes}
                         </p>
                         <p className="text-xs text-gray-500 uppercase font-bold">
-                          Votes
+                          Support
                         </p>
                       </div>
                     </div>
@@ -758,9 +757,9 @@ const ContestDetails = () => {
                     <div className="bg-blue-50 text-blue-800 p-4 rounded-lg text-sm mb-6 flex gap-3 items-start">
                       <Clock className="w-5 h-5 flex-shrink-0 mt-0.5" />
                       <p>
-                        By clicking "Publish Results", these winners will be
-                        saved permanently, and the contest status will be
-                        updated to <strong>Winners Announced</strong>. This
+                        By clicking "Publish Results", these selected candidates
+                        will be saved permanently, and the event status will be
+                        updated to <strong>Results Declared</strong>. This
                         action will be visible to all app users immediately.
                       </p>
                     </div>

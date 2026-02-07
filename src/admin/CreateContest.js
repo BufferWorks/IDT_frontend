@@ -78,7 +78,7 @@ const CreateContest = () => {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Create New Contest</h1>
+        <h1 className="text-3xl font-bold text-gray-900">Create New Event</h1>
       </div>
 
       <form
@@ -88,7 +88,7 @@ const CreateContest = () => {
         {/* Banner Upload */}
         <div className="space-y-4">
           <label className="block text-sm font-bold text-gray-700">
-            Contest Banner
+            Event Banner
           </label>
           <div
             className={`relative border-2 border-dashed rounded-2xl p-8 text-center transition-all ${bannerPreview ? "border-[#5865F2] bg-blue-50" : "border-gray-300 hover:border-gray-400"}`}
@@ -130,7 +130,7 @@ const CreateContest = () => {
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
-              <Type size={16} className="text-gray-400" /> Contest Name
+              <Type size={16} className="text-gray-400" /> Event Name
             </label>
             <input
               type="text"
@@ -168,7 +168,7 @@ const CreateContest = () => {
             onChange={handleChange}
             rows="4"
             className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#5865F2] focus:ring-2 focus:ring-[#5865F2]/20 outline-none transition-all"
-            placeholder="Details about the contest..."
+            placeholder="Details about the event..."
           ></textarea>
         </div>
 
@@ -176,7 +176,8 @@ const CreateContest = () => {
         <div className="grid md:grid-cols-3 gap-6">
           <div className="space-y-2">
             <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
-              <DollarSign size={16} className="text-gray-400" /> Entry Fee (₹)
+              <DollarSign size={16} className="text-gray-400" /> Registration
+              Fee (₹)
             </label>
             <input
               type="number"
@@ -190,7 +191,7 @@ const CreateContest = () => {
           </div>
           <div className="space-y-2">
             <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
-              <Trophy size={16} className="text-gray-400" /> Prize Pool (₹)
+              <Trophy size={16} className="text-gray-400" /> Grant Amount (₹)
             </label>
             <input
               type="number"
@@ -256,12 +257,12 @@ const CreateContest = () => {
 
           <div className="space-y-4">
             <h3 className="font-bold text-gray-900 flex items-center gap-2">
-              <Calendar size={18} className="text-purple-500" /> Voting Period
+              <Calendar size={18} className="text-purple-500" /> Support Period
             </h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
                 <label className="text-xs font-semibold text-gray-500">
-                  Voting End Date
+                  Support End Date
                 </label>
                 <input
                   type="datetime-local"
@@ -302,7 +303,7 @@ const CreateContest = () => {
             disabled={loading}
             className="px-8 py-3 rounded-xl font-bold text-white bg-[#5865F2] hover:bg-[#4752c4] shadow-lg shadow-[#5865F2]/30 transition-all disabled:opacity-70"
           >
-            {loading ? "Creating..." : "Create Contest"}
+            {loading ? "Creating..." : "Create Event"}
           </button>
         </div>
       </form>
