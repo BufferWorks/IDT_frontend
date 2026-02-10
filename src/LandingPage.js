@@ -200,7 +200,7 @@ const LandingPage = () => {
             <FeatureCard
               icon={<ShieldCheck size={40} className="text-[#5865F2]" />}
               title="Secure Payments"
-              desc="Integrated with PhonePe for 100% safe and instant transactions."
+              desc="Integrated with Razorpay for 100% safe and instant transactions."
             />
             <FeatureCard
               icon={<Trophy size={40} className="text-amber-500" />}
