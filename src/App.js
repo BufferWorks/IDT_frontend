@@ -8,6 +8,7 @@ import PrivacyPolicy from "./PrivacyPolicy";
 import TermsOfService from "./TermsOfService";
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
+import DeletionRequest from "./DeletionRequest";
 
 // Admin Imports
 import AdminLayout from "./admin/AdminLayout";
@@ -30,6 +31,7 @@ function App() {
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/delete-account" element={<DeletionRequest />} />
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
