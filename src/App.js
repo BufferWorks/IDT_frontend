@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PaymentStatus from "./PaymentStatus";
+import PaymentCheckout from "./components/PaymentCheckout";
 
 import LandingPage from "./LandingPage";
 import PrivacyPolicy from "./PrivacyPolicy";
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/payment/status" element={<PaymentStatus />} />
+        <Route path="/checkout" element={<PaymentCheckout />} />
 
         {/* Static Pages */}
         <Route path="/privacy" element={<PrivacyPolicy />} />
