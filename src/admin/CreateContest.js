@@ -67,7 +67,10 @@ const CreateContest = () => {
       navigate("/admin/manage-contests");
     } catch (error) {
       console.error("Error creating contest:", error);
-      alert("Failed to create contest. Please try again.");
+      const errorMessage =
+        error.response?.data?.message ||
+        "Failed to create contest. Please try again.";
+      alert(errorMessage);
     } finally {
       setLoading(false);
     }
