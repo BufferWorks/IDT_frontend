@@ -15,38 +15,38 @@ const AdminDashboard = () => {
   const [recentEvents, setRecentEvents] = useState([]);
 
   useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const response = await axios.get(`${API}/contests/all`);
+        const contests = response.data.contests;
+
+        // Calculate stats
+        const totalEvents = contests.length;
+        const activeParticipants = contests.reduce(
+          (acc, curr) => acc + (curr.totalParticipants || 0),
+          0
+        );
+
+        // Since we don't have total entries or support API yet, we'll keep them 0 or placeholder
+        // Or estimate total entries = active participants for now if suitable
+        const totalEntries = activeParticipants;
+
+        setDashboardData({
+          totalEvents,
+          activeParticipants,
+          totalEntries,
+          totalSupport: 0,
+        });
+
+        // Set recent events (top 5)
+        setRecentEvents(contests.slice(0, 5));
+      } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+      }
+    };
+
     fetchDashboardData();
   }, []);
-
-  const fetchDashboardData = async () => {
-    try {
-      const response = await axios.get(`${API}/contests/all`);
-      const contests = response.data.contests;
-
-      // Calculate stats
-      const totalEvents = contests.length;
-      const activeParticipants = contests.reduce(
-        (acc, curr) => acc + (curr.totalParticipants || 0),
-        0
-      );
-
-      // Since we don't have total entries or support API yet, we'll keep them 0 or placeholder
-      // Or estimate total entries = active participants for now if suitable
-      const totalEntries = activeParticipants;
-
-      setDashboardData({
-        totalEvents,
-        activeParticipants,
-        totalEntries,
-        totalSupport: 0,
-      });
-
-      // Set recent events (top 5)
-      setRecentEvents(contests.slice(0, 5));
-    } catch (error) {
-      console.error("Error fetching dashboard data:", error);
-    }
-  };
 
   const stats = [
     {
