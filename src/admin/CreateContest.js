@@ -26,8 +26,6 @@ const CreateContest = () => {
     celebrityName: "",
     registrationStartAt: "",
     registrationEndAt: "",
-    registrationStartAt: "",
-    registrationEndAt: "",
     votingEndAt: "",
     resultsAnnounceAt: "",
     bannerImage: null,
