@@ -52,7 +52,7 @@ const DeletionRequest = () => {
 
       if (response.ok) {
         setMessage(
-          "We've received your request. Using the number provided, we will process the deletion within 30 days.",
+          "We've received your request. Using the number provided, we will process the deletion within 48 hours.",
         );
         setFormData({
           mobileNumber: "",
@@ -106,6 +106,14 @@ const DeletionRequest = () => {
             We're sorry to see you go. Please fill out the form below to request
             permanent deletion of your data.
           </p>
+          <div className="mt-4 max-w-sm mx-auto bg-gray-50 border border-gray-200 rounded-md p-3 text-sm text-left shadow-sm">
+            <p className="font-medium text-gray-800">
+              Your account and all associated data will be permanently deleted within 48 hours of request.
+            </p>
+            <p className="text-gray-600 mt-1">
+              We may verify your identity before processing the request.
+            </p>
+          </div>
         </div>
 
         <div className="bg-white py-8 px-4 shadow-xl shadow-gray-200/50 sm:rounded-2xl sm:px-10 border border-gray-100">
