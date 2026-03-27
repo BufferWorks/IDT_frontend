@@ -26,7 +26,7 @@ const PrivacyPolicy = () => {
 
           <div className="prose prose-lg text-gray-600">
             <p className="mb-6">
-              At IDT Event Management, accessible from
+              At IDT – India's Talent Platform, accessible from
               https://idteventmanagement.online/, one of our main priorities is
               the privacy of our visitors. This Privacy Policy document contains
               types of information that is collected and recorded by our website
@@ -76,12 +76,12 @@ const PrivacyPolicy = () => {
               3. Log Files
             </h3>
             <p className="mb-6">
-              IDT Event Management follows a standard procedure of using log
-              files. These files log visitors when they visit websites. The
-              information collected includes internet protocol (IP) addresses,
-              browser type, Internet Service Provider (ISP), date and time
-              stamp, and referring/exit pages. This information is used for
-              analyzing trends and administering the site.
+              IDT – India's Talent Platform follows a standard procedure of
+              using log files. These files log visitors when they visit
+              websites. The information collected includes internet protocol
+              (IP) addresses, browser type, Internet Service Provider (ISP),
+              date and time stamp, and referring/exit pages. This information is
+              used for analyzing trends and administering the site.
             </p>
 
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -142,11 +142,12 @@ const PrivacyPolicy = () => {
               7. Children's Information
             </h3>
             <p className="mb-6">
-              IDT Event Management does not knowingly collect any Personal
-              Identifiable Information from children under the age of 13. If you
-              think that your child provided this kind of information on our
-              website, we strongly encourage you to contact us immediately, and
-              we will do our best to promptly remove such information.
+              IDT – India's Talent Platform does not knowingly collect any
+              Personal Identifiable Information from children under the age of
+              13. If you think that your child provided this kind of information
+              on our website, we strongly encourage you to contact us
+              immediately, and we will do our best to promptly remove such
+              information.
             </p>
 
             <h3 className="text-2xl font-bold text-gray-900 mb-4">

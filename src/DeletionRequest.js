@@ -96,6 +96,9 @@ const DeletionRequest = () => {
           <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
             <Shield className="h-8 w-8 text-red-600" />
           </div>
+          <h1 className="text-lg font-semibold text-red-600 mb-1">
+            IDT – India's Talent Platform
+          </h1>
           <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
             Account Deletion
           </h2>
