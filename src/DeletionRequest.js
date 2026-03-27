@@ -92,21 +92,21 @@ const DeletionRequest = () => {
         animate="visible"
         variants={fadeIn}
       >
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 px-4">
           <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
             <Shield className="h-8 w-8 text-red-600" />
           </div>
-          <h1 className="text-lg font-semibold text-red-600 mb-1">
-            IDT – India's Talent Platform
+          <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight mb-3">
+            Account Deletion – IDT – India’s Talent Platform
           </h1>
-          <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-            Account Deletion
-          </h2>
-          <p className="mt-2 text-sm text-gray-600 max-w-xs mx-auto">
+          <p className="text-sm text-gray-600 max-w-md mx-auto mb-4">
+            This page allows users of the mobile application "IDT – India’s Talent Platform", developed by Bufferworks, to request deletion of their account and associated data.
+          </p>
+          <p className="text-sm text-gray-600 max-w-md mx-auto">
             We're sorry to see you go. Please fill out the form below to request
             permanent deletion of your data.
           </p>
-          <div className="mt-4 max-w-sm mx-auto bg-gray-50 border border-gray-200 rounded-md p-3 text-sm text-left shadow-sm">
+          <div className="mt-6 max-w-sm mx-auto bg-gray-50 border border-gray-200 rounded-md p-3 text-sm text-left shadow-sm">
             <p className="font-medium text-gray-800">
               Your account and all associated data will be permanently deleted within 48 hours of request.
             </p>

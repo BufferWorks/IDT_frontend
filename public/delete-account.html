@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Deletion - IDT - India’s Talent Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 min-h-screen relative overflow-x-hidden text-gray-900">
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-100 rounded-full blur-[100px] opacity-50"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-100 rounded-full blur-[100px] opacity-50"></div>
+    </div>
+
+    <div class="sm:mx-auto sm:w-full sm:max-w-md relative z-10 transition-all duration-500 ease-in-out opacity-0 translate-y-5" id="mainContainer">
+        <div class="text-center mb-8 px-4">
+            <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight mb-3">
+                Account Deletion – IDT – India’s Talent Platform
+            </h1>
+            <p class="text-sm text-gray-600 max-w-md mx-auto mb-4">
+                This page allows users of the mobile application "IDT – India’s Talent Platform", developed by Bufferworks, to request deletion of their account and associated data.
+            </p>
+            <p class="text-sm text-gray-600 max-w-md mx-auto">
+                We're sorry to see you go. Please fill out the form below to request permanent deletion of your data.
+            </p>
+            <div class="mt-6 max-w-sm mx-auto bg-gray-50 border border-gray-200 rounded-md p-3 text-sm text-left shadow-sm">
+                <p class="font-medium text-gray-800">
+                    Your account and all associated data will be permanently deleted within 48 hours of request.
+                </p>
+                <p class="text-gray-600 mt-1">
+                    We may verify your identity before processing the request.
+                </p>
+            </div>
+        </div>
+
+        <div class="bg-white py-8 px-4 shadow-xl shadow-gray-200/50 sm:rounded-2xl sm:px-10 border border-gray-100">
+            <div id="successMessage" class="hidden rounded-lg bg-green-50 p-6 flex-col items-center text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mb-4"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <h3 class="text-lg font-medium text-green-900">Request Submitted</h3>
+                <p class="mt-2 text-sm text-green-700">We've received your request. Using the number provided, we will process the deletion within 48 hours.</p>
+                <button onclick="resetForm()" class="mt-6 w-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">Submit another request</button>
+            </div>
+
+            <form id="deletionForm" class="space-y-6" onsubmit="submitForm(event)">
+                <div>
+                    <label for="mobileNumber" class="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+                    <div class="relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                        </div>
+                        <input id="mobileNumber" name="mobileNumber" type="tel" required class="block w-full pl-10 pr-3 py-3 border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 sm:text-sm border transition-shadow" placeholder="e.g. +91 98765 43210" />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="deletionType" class="block text-sm font-medium text-gray-700 mb-1">Data to Delete</label>
+                    <div class="relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                        </div>
+                        <select id="deletionType" name="deletionType" required class="block w-full pl-10 pr-10 py-3 border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 sm:text-sm border bg-white appearance-none transition-shadow">
+                            <option value="Full Account">Full Account (Profile + Data)</option>
+                            <option value="Media Data">Media Data Only</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="reason" class="block text-sm font-medium text-gray-700 mb-1">Reason for Deletion</label>
+                    <div class="relative rounded-md shadow-sm">
+                        <div class="absolute top-3 left-3 flex items-start pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        </div>
+                        <textarea id="reason" name="reason" rows="4" required class="block w-full pl-10 pr-3 py-3 border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 sm:text-sm border transition-shadow" placeholder="We'd love to know why you're leaving..."></textarea>
+                    </div>
+                </div>
+
+                <div id="errorMessage" class="hidden rounded-md bg-red-50 p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-red-800">Submission Error</h3>
+                            <div class="mt-2 text-sm text-red-700">
+                                <p id="errorText">Something went wrong. Please try again.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button id="submitBtn" type="submit" class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all hover:shadow-lg hover:-translate-y-0.5">
+                        <span id="btnText">Submit Deletion Request</span>
+                        <svg id="btnIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-4 w-4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        <svg id="btnSpinner" class="hidden animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                    </button>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <p class="text-xs text-gray-500">
+                        By submitting this form, you acknowledge that this action is irreversible once processed.
+                        <br />
+                        <a href="privacy.html" class="text-red-600 hover:text-red-500 font-medium">Read our Privacy Policy</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Simple entry animation
+        window.addEventListener('load', () => {
+            const container = document.getElementById('mainContainer');
+            container.classList.remove('opacity-0', 'translate-y-5');
+        });
+
+        async function submitForm(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnIcon = document.getElementById('btnIcon');
+            const btnSpinner = document.getElementById('btnSpinner');
+            const errorMessage = document.getElementById('errorMessage');
+            const errorText = document.getElementById('errorText');
+            const successMessage = document.getElementById('successMessage');
+            const form = document.getElementById('deletionForm');
+            
+            // Set loading state
+            btn.disabled = true;
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+            btn.classList.remove('hover:shadow-lg', 'hover:-translate-y-0.5');
+            btnText.innerText = 'Processing...';
+            btnIcon.classList.add('hidden');
+            btnSpinner.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+            
+            const formData = {
+                mobileNumber: document.getElementById('mobileNumber').value,
+                deletionType: document.getElementById('deletionType').value,
+                reason: document.getElementById('reason').value
+            };
+            
+            try {
+                // Ensure to point to accurate prod URL
+                const response = await fetch('https://api.idteventmanagement.online/api/deletion-requests', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    successMessage.classList.add('flex');
+                } else {
+                    errorText.innerText = data.message || 'Something went wrong. Please try again.';
+                    errorMessage.classList.remove('hidden');
+                }
+            } catch (err) {
+                errorText.innerText = 'Failed to connect to the server. Please check your internet connection.';
+                errorMessage.classList.remove('hidden');
+            } finally {
+                // Reset loading state
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                btn.classList.add('hover:shadow-lg', 'hover:-translate-y-0.5');
+                btnText.innerText = 'Submit Deletion Request';
+                btnIcon.classList.remove('hidden');
+                btnSpinner.classList.add('hidden');
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('mobileNumber').value = '';
+            document.getElementById('reason').value = '';
+            document.getElementById('deletionType').value = 'Full Account';
+            
+            document.getElementById('successMessage').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('flex');
+            document.getElementById('deletionForm').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
