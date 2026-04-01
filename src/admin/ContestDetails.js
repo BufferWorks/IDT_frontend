@@ -42,6 +42,13 @@ const ContestDetails = () => {
   // Search State
   const [searchQuery, setSearchQuery] = useState("");
 
+  const parseAsLocal = (isoString) => {
+    if (!isoString) return new Date();
+    // Remove +00:00 or Z so the browser treats it as LOCAL time
+    const cleaned = isoString.replace(/\+00:00$|\+0000$|Z$/, "");
+    return new Date(cleaned);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -177,7 +184,7 @@ const ContestDetails = () => {
   const canAnnounce =
     !contest.winnersAnnounced &&
     contest.resultsAnnounceAt &&
-    new Date() >= new Date(contest.resultsAnnounceAt);
+    new Date() >= parseAsLocal(contest.resultsAnnounceAt);
 
   return (
     <div>
@@ -332,29 +339,29 @@ const ContestDetails = () => {
                 {
                   label: "Registration Starts",
                   date: contest.registrationStartAt,
-                  passed: new Date() >= new Date(contest.registrationStartAt),
+                  passed: new Date() >= parseAsLocal(contest.registrationStartAt),
                 },
                 {
                   label: "Registration Ends",
                   date: contest.registrationEndAt,
-                  passed: new Date() >= new Date(contest.registrationEndAt),
+                  passed: new Date() >= parseAsLocal(contest.registrationEndAt),
                 },
                 {
                   label: "Support Starts",
                   date: contest.votingStartAt,
-                  passed: new Date() >= new Date(contest.votingStartAt),
+                  passed: new Date() >= parseAsLocal(contest.votingStartAt),
                 },
                 {
                   label: "Support Ends",
                   date: contest.votingEndAt,
-                  passed: new Date() >= new Date(contest.votingEndAt),
+                  passed: new Date() >= parseAsLocal(contest.votingEndAt),
                 },
                 {
                   label: "Results Announcement",
                   date: contest.resultsAnnounceAt || contest.votingEndAt, // Fallback if not set
                   passed:
                     new Date() >=
-                    new Date(contest.resultsAnnounceAt || contest.votingEndAt),
+                    parseAsLocal(contest.resultsAnnounceAt || contest.votingEndAt),
                 },
               ].map((step, index) => (
                 <div key={index} className="relative flex items-center gap-4">
@@ -377,13 +384,12 @@ const ContestDetails = () => {
                     </p>
                     <p className="text-xs text-gray-400">
                       {step.date
-                        ? new Date(step.date).toLocaleString("en-GB", {
+                        ? parseAsLocal(step.date).toLocaleString("en-GB", {
                             day: "2-digit",
                             month: "2-digit",
                             year: "numeric",
                             hour: "2-digit",
                             minute: "2-digit",
-                            timeZone: "UTC",
                           })
                         : "TBA"}
                     </p>

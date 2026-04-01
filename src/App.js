@@ -18,6 +18,7 @@ import AdminLogin from "./admin/AdminLogin";
 import CreateContest from "./admin/CreateContest";
 import ManageContests from "./admin/ManageContests";
 import ContestDetails from "./admin/ContestDetails";
+import ContestRedirect from "./ContestRedirect";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/payment/status" element={<PaymentStatus />} />
         <Route path="/checkout" element={<PaymentCheckout />} />
         <Route path="/promote/:id" element={<PromoteRedirect />} />
+        <Route path="/contest/:id" element={<ContestRedirect />} />
 
         {/* Static Pages */}
         <Route path="/privacy" element={<PrivacyPolicy />} />
