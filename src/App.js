@@ -9,6 +9,7 @@ import TermsOfService from "./TermsOfService";
 import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 import DeletionRequest from "./DeletionRequest";
+import PromoteRedirect from "./PromoteRedirect";
 
 // Admin Imports
 import AdminLayout from "./admin/AdminLayout";
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/payment/status" element={<PaymentStatus />} />
         <Route path="/checkout" element={<PaymentCheckout />} />
+        <Route path="/promote/:id" element={<PromoteRedirect />} />
 
         {/* Static Pages */}
         <Route path="/privacy" element={<PrivacyPolicy />} />

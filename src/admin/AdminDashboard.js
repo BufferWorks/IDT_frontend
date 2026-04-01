@@ -106,7 +106,9 @@ const AdminDashboard = () => {
           </h2>
           {recentEvents.length > 0 ? (
             <div className="space-y-4">
-              {recentEvents.map((event) => (
+              {recentEvents.map((event) => {
+                const isEventActive = new Date(event.votingEndAt) > new Date();
+                return (
                 <div
                   key={event._id}
                   className="flex items-center justify-between p-4 border-b last:border-0 border-gray-50"
@@ -120,15 +122,16 @@ const AdminDashboard = () => {
                     </p>
                   </div>
                   <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${event.isActive
+                    className={`px-3 py-1 rounded-full text-xs font-semibold ${isEventActive
                       ? "bg-green-100 text-green-700"
                       : "bg-red-100 text-red-700"
                       }`}
                   >
-                    {event.isActive ? "Active" : "Closed"}
+                    {isEventActive ? "Active" : "Closed"}
                   </span>
                 </div>
-              ))}
+              );
+              })}
             </div>
           ) : (
             <div className="text-center py-10 text-gray-400">

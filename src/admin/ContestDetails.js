@@ -34,6 +34,11 @@ const ContestDetails = () => {
   const [entryDetails, setEntryDetails] = useState(null);
   const [loadingEntry, setLoadingEntry] = useState(false);
 
+  // Payment Modal State
+  const [selectedPaymentId, setSelectedPaymentId] = useState(null);
+  const [paymentDetails, setPaymentDetails] = useState(null);
+  const [loadingPayment, setLoadingPayment] = useState(false);
+
   // Search State
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -72,6 +77,24 @@ const ContestDetails = () => {
   const closeEntryModal = () => {
     setSelectedEntryId(null);
     setEntryDetails(null);
+  };
+
+  const handlePaymentClick = async (paymentId) => {
+    try {
+      setLoadingPayment(true);
+      setSelectedPaymentId(paymentId);
+      const res = await axios.get(`${API}/payment/details/${paymentId}`);
+      setPaymentDetails(res.data.payment);
+    } catch (error) {
+      console.error("Error fetching payment:", error);
+    } finally {
+      setLoadingPayment(false);
+    }
+  };
+
+  const closePaymentModal = () => {
+    setSelectedPaymentId(null);
+    setPaymentDetails(null);
   };
 
   const handleAnnounceClick = async () => {
@@ -418,7 +441,15 @@ const ContestDetails = () => {
                         {new Date(p.createdAt).toLocaleDateString("en-GB")}
                       </td>
                       <td className="px-6 py-4 text-gray-400 text-sm font-mono">
-                        {p.paymentId || (
+                        {p.paymentId ? (
+                          <button
+                            onClick={() => handlePaymentClick(p.paymentId)}
+                            className="text-[#5865F2] hover:text-[#4752c4] hover:underline font-bold transition-all"
+                            title="View Payment Details"
+                          >
+                            {p.paymentId}
+                          </button>
+                        ) : (
                           <span className="text-green-600 bg-green-50 px-2 py-1 rounded">
                             FREE
                           </span>
@@ -787,6 +818,109 @@ const ContestDetails = () => {
                 </div>
               )}
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Payment Detail Modal */}
+      {selectedPaymentId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+          <div
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {loadingPayment ? (
+              <div className="p-12 flex flex-col items-center justify-center">
+                <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#5865F2] mb-4"></div>
+                <p className="text-gray-500">Loading payment details...</p>
+              </div>
+            ) : paymentDetails ? (
+              <div>
+                <div className="flex justify-between items-center p-6 border-b border-gray-100 bg-gray-50 rounded-t-2xl">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      Payment Details
+                    </h3>
+                    <p className="text-sm text-gray-500 font-mono mt-1">
+                      ID: {paymentDetails._id}
+                    </p>
+                  </div>
+                  <button
+                    onClick={closePaymentModal}
+                    className="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-200 transition-colors"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+
+                <div className="p-6 space-y-6">
+                  <div className={`p-4 rounded-xl flex items-center justify-between border ${
+                    paymentDetails.status === "SUCCESS" 
+                    ? "bg-green-50 border-green-200" 
+                    : paymentDetails.status === "FAILED"
+                    ? "bg-red-50 border-red-200"
+                    : "bg-orange-50 border-orange-200"
+                  }`}>
+                    <div className="flex items-center gap-3">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                        paymentDetails.status === "SUCCESS" ? "bg-green-500 text-white" :
+                        paymentDetails.status === "FAILED" ? "bg-red-500 text-white" :
+                        "bg-orange-500 text-white"
+                      }`}>
+                        <DollarSign size={20} />
+                      </div>
+                      <div>
+                        <p className={`font-bold uppercase text-sm ${
+                          paymentDetails.status === "SUCCESS" ? "text-green-700" :
+                          paymentDetails.status === "FAILED" ? "text-red-700" :
+                          "text-orange-700"
+                        }`}>{paymentDetails.status}</p>
+                        <p className="text-xs text-gray-500">Transaction Status</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-2xl font-bold text-gray-900">₹{paymentDetails.amount}</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                      <p className="text-xs text-gray-400 uppercase font-bold mb-1">Razorpay Order ID</p>
+                      <p className="font-mono text-sm text-gray-800 break-all">{paymentDetails.razorpayOrderId || "N/A"}</p>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                      <p className="text-xs text-gray-400 uppercase font-bold mb-1">Razorpay Payment ID</p>
+                      <p className="font-mono text-sm text-gray-800 break-all">{paymentDetails.razorpayPaymentId || "N/A"}</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex justify-between py-2 border-b border-gray-50">
+                      <span className="text-gray-500 text-sm">Merchant Order ID</span>
+                      <span className="font-mono text-sm font-medium">{paymentDetails.merchantOrderId}</span>
+                    </div>
+                    <div className="flex justify-between py-2 border-b border-gray-50">
+                      <span className="text-gray-500 text-sm">Paid At</span>
+                      <span className="text-sm font-medium">
+                        {paymentDetails.paidAt ? new Date(paymentDetails.paidAt).toLocaleString("en-GB") : "-"}
+                      </span>
+                    </div>
+                    <div className="flex justify-between py-2 border-b border-gray-50">
+                      <span className="text-gray-500 text-sm">Participant Name</span>
+                      <span className="text-sm font-bold text-gray-900">{paymentDetails.userId?.name || "-"}</span>
+                    </div>
+                    <div className="flex justify-between py-2">
+                      <span className="text-gray-500 text-sm">Participant Email</span>
+                      <span className="text-sm font-medium">{paymentDetails.userId?.email || "-"}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="p-12 text-center text-red-500">
+                Failed to load payment details.
+              </div>
+            )}
           </div>
         </div>
       )}
