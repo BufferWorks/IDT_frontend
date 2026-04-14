@@ -141,9 +141,13 @@ const ManageContests = () => {
                         >
                           <Eye size={18} />
                         </Link>
-                        {/* <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors">
+                        <Link
+                          to={`/admin/update-contest/${contest._id}`}
+                          className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors"
+                          title="Edit Details"
+                        >
                           <Edit2 size={18} />
-                        </button> */}
+                        </Link>
                       </div>
                     </td>
                   </tr>

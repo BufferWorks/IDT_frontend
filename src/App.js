@@ -18,6 +18,7 @@ import AdminLogin from "./admin/AdminLogin";
 import CreateContest from "./admin/CreateContest";
 import ManageContests from "./admin/ManageContests";
 import ContestDetails from "./admin/ContestDetails";
+import UpdateContest from "./admin/UpdateContest";
 import ContestRedirect from "./ContestRedirect";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route path="create-contest" element={<CreateContest />} />
           <Route path="manage-contests" element={<ManageContests />} />
           <Route path="contest/:id" element={<ContestDetails />} />
+          <Route path="update-contest/:id" element={<UpdateContest />} />
           {/* Default redirect to dashboard */}
           <Route index element={<Navigate to="dashboard" replace />} />
         </Route>
