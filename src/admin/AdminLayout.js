@@ -8,6 +8,7 @@ import {
   Settings,
   Menu,
   X,
+  Image,
 } from "lucide-react";
 
 const AdminLayout = () => {
@@ -44,6 +45,11 @@ const AdminLayout = () => {
       name: "Manage Contests",
       path: "/admin/manage-contests",
       icon: <List size={20} />,
+    },
+    {
+      name: "Gallery",
+      path: "/admin/manage-gallery",
+      icon: <Image size={20} />,
     },
   ];
 
