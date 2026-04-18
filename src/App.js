@@ -29,6 +29,7 @@ function App() {
         <Route path="/payment/status" element={<PaymentStatus />} />
         <Route path="/checkout" element={<PaymentCheckout />} />
         <Route path="/promote/:id" element={<PromoteRedirect />} />
+        <Route path="/vote/:slugId" element={<PromoteRedirect />} />
         <Route path="/contest/:id" element={<ContestRedirect />} />
 
         {/* Static Pages */}
