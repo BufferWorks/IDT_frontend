@@ -12,13 +12,28 @@ const PromoteRedirect = () => {
     }
     if (!rawId) return;
 
-    // With Android App Links enabled, any user with the app installed will be intercepted by the OS.
-    // If they land on this web page in Chrome/Safari, it strictly means the app is NOT installed.
-    // Therefore, we instantly redirect them to the Play Store without delay.
+    // Because App Links require strict cryptographic verification (which fails on local 'flutter run' builds),
+    // we must fall back to the Javascript intent invocation for local development testing.
     const isAndroid = /android/i.test(navigator.userAgent);
-    const playStoreUrl = "https://play.google.com/store/apps/details?id=com.idt.app";
 
-    window.location.replace(playStoreUrl);
+    if (isAndroid) {
+      // 1. Instantly trigger the OS prompt
+      window.location.replace(`idtapp://vote-demo?entryId=${rawId}`);
+
+      // 2. We wait 8 seconds so you have plenty of time to click "Continue" on the system prompt.
+      // If the app is missing, Chrome does nothing, and the 8 seconds will painlessly route them to the Play Store.
+      setTimeout(() => {
+        if (!document.hidden) {
+          window.location.replace(
+            "https://play.google.com/store/apps/details?id=com.idt.app",
+          );
+        }
+      }, 8000);
+    } else {
+      window.location.replace(
+        "https://play.google.com/store/apps/details?id=com.idt.app",
+      );
+    }
   };
 
   useEffect(() => {
