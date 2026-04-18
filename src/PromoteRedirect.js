@@ -12,26 +12,13 @@ const PromoteRedirect = () => {
     }
     if (!rawId) return;
 
-    // Clean any weird trailing characters just in case
-    rawId = rawId.replace(/[^a-zA-Z0-9]/g, "");
-
-    // A completely native Android intent URI.
-    // If the app is missing, Chrome parses S.browser_fallback_url and seamlessly redirects to the Play Store.
-    const fallbackUrl = encodeURIComponent(
-      "https://play.google.com/store/apps/details?id=com.idt.app",
-    );
-    const intentUrl = `intent://vote-demo?entryId=${rawId}#Intent;scheme=idtapp;package=com.idt.app;S.browser_fallback_url=${fallbackUrl};end`;
-
-    // For non-Android devices (e.g., iOS or Desktop Desktop Browser), immediately fallback to Play Store/Website.
+    // With Android App Links enabled, any user with the app installed will be intercepted by the OS.
+    // If they land on this web page in Chrome/Safari, it strictly means the app is NOT installed.
+    // Therefore, we instantly redirect them to the Play Store without delay.
     const isAndroid = /android/i.test(navigator.userAgent);
+    const playStoreUrl = "https://play.google.com/store/apps/details?id=com.idt.app";
 
-    if (isAndroid) {
-      window.location.replace(intentUrl);
-    } else {
-      window.location.replace(
-        "https://play.google.com/store/apps/details?id=com.idt.app",
-      );
-    }
+    window.location.replace(playStoreUrl);
   };
 
   useEffect(() => {

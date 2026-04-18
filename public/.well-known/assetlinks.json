@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.idt.app",
+      "sha256_cert_fingerprints": [
+        "5F:5A:D0:2F:36:A6:4F:18:B2:87:F2:43:64:FD:0C:37:3D:58:CE:5C:BD:A2:77:EC:C5:DE:B4:1E:FA:F2:9D:9B"
+      ]
+    }
+  }
+]
