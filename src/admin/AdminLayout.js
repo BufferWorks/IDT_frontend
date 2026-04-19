@@ -9,6 +9,7 @@ import {
   Menu,
   X,
   Image,
+  Bell,
 } from "lucide-react";
 
 const AdminLayout = () => {
@@ -50,6 +51,11 @@ const AdminLayout = () => {
       name: "Gallery",
       path: "/admin/manage-gallery",
       icon: <Image size={20} />,
+    },
+    {
+      name: "Notifications",
+      path: "/admin/send-notification",
+      icon: <Bell size={20} />,
     },
   ];
 
