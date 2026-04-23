@@ -6,6 +6,8 @@ import {
   AlertCircle,
   Loader,
   Image,
+  UploadCloud,
+  X,
 } from "lucide-react";
 
 const API_URL =
@@ -22,6 +24,38 @@ const SendNotification = () => {
   const [imageValid, setImageValid] = useState(true);
   const [status, setStatus] = useState(null); // null | 'loading' | 'success' | 'error'
   const [errorMsg, setErrorMsg] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    setErrorMsg("");
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const res = await fetch(`${API_URL}/notifications/upload`, {
+        method: "POST",
+        headers: {
+          "x-admin-key": ADMIN_SECRET_KEY,
+        },
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to upload image");
+
+      setImageUrl(data.imageUrl);
+      setImageValid(true);
+    } catch (err) {
+      setErrorMsg(err.message);
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const MAX_BODY = 200;
 
@@ -134,27 +168,42 @@ const SendNotification = () => {
             </p>
           </div>
 
-          {/* Banner Image URL (optional) */}
+          {/* Banner Image Upload (optional) */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
               <Image size={15} className="text-gray-400" />
-              Banner Image URL
+              Banner Image
               <span className="text-xs font-normal text-gray-400">
                 (optional)
               </span>
             </label>
-            <input
-              type="url"
-              value={imageUrl}
-              onChange={(e) => {
-                setImageUrl(e.target.value);
-                setImageValid(true);
-              }}
-              placeholder="https://res.cloudinary.com/... or any public image URL"
-              className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-500 transition-all"
-            />
-            {imageUrl && (
-              <div className="mt-2 rounded-xl overflow-hidden border border-gray-100 bg-gray-50">
+
+            {!imageUrl ? (
+              <div className="relative border-2 border-dashed border-gray-200 rounded-xl p-6 text-center hover:border-gray-400 transition-colors">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  disabled={isUploading}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
+                />
+                <div className="flex flex-col items-center gap-2">
+                  {isUploading ? (
+                    <>
+                      <Loader className="animate-spin text-gray-400" size={24} />
+                      <p className="text-sm text-gray-500 font-medium">Uploading to Cloudinary...</p>
+                    </>
+                  ) : (
+                    <>
+                      <UploadCloud className="text-gray-400" size={24} />
+                      <p className="text-sm text-gray-600 font-medium">Click or drag image to upload</p>
+                      <p className="text-xs text-gray-400">JPEG, PNG, WEBP (Max 5MB)</p>
+                    </>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="mt-2 relative rounded-xl overflow-hidden border border-gray-100 bg-gray-50 group">
                 <img
                   src={imageUrl}
                   alt="Banner preview"
@@ -162,14 +211,25 @@ const SendNotification = () => {
                   onError={() => setImageValid(false)}
                   onLoad={() => setImageValid(true)}
                 />
+                <button
+                  onClick={() => {
+                    setImageUrl("");
+                    setImageValid(true);
+                  }}
+                  className="absolute top-2 right-2 bg-white/90 p-1.5 rounded-full shadow-sm text-gray-600 hover:text-red-500 hover:bg-white transition-all opacity-0 group-hover:opacity-100"
+                  title="Remove Image"
+                >
+                  <X size={16} />
+                </button>
                 {!imageValid && (
-                  <p className="text-xs text-red-500 px-3 py-2">
-                    ⚠️ Image could not be loaded — check the URL.
+                  <p className="text-xs text-red-500 px-3 py-2 absolute bottom-0 left-0 bg-white/90 w-full">
+                    ⚠️ Image could not be loaded. Please try uploading again.
                   </p>
                 )}
               </div>
             )}
-            <p className="text-xs text-gray-400 mt-1">
+            
+            <p className="text-xs text-gray-400 mt-2">
               Appears as an expandable big-picture banner below the notification
               text.
             </p>
@@ -247,9 +307,7 @@ const SendNotification = () => {
       {/* Info box */}
       <div className="mt-4 bg-gray-50 border border-gray-100 rounded-xl p-4 text-sm text-gray-600">
         <strong>Note:</strong> Notifications are delivered to all users who have
-        installed the IDT app and granted notification permissions. Banner
-        images must be publicly accessible URLs (Cloudinary links work
-        perfectly).
+        installed the IDT app and granted notification permissions.
       </div>
     </div>
   );
