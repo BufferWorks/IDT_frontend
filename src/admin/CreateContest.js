@@ -23,6 +23,9 @@ const CreateContest = () => {
     description: "",
     entryFee: "",
     prizePool: "",
+    firstPrize: "",
+    secondPrize: "",
+    thirdPrize: "",
     celebrityName: "",
     registrationStartAt: "",
     registrationEndAt: "",
@@ -98,7 +101,7 @@ const CreateContest = () => {
               type="file"
               onChange={handleFileChange}
               accept="image/*"
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               required
             />
 
@@ -215,6 +218,52 @@ const CreateContest = () => {
               onChange={handleChange}
               className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#5865F2] focus:ring-2 focus:ring-[#5865F2]/20 outline-none transition-all"
               placeholder="Guest Name"
+            />
+          </div>
+        </div>
+
+        {/* Prizes Breakdown */}
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
+              🥇 1st Prize (₹)
+            </label>
+            <input
+              type="number"
+              name="firstPrize"
+              value={formData.firstPrize}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#5865F2] focus:ring-2 focus:ring-[#5865F2]/20 outline-none transition-all"
+              placeholder="25000"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
+              🥈 2nd Prize (₹)
+            </label>
+            <input
+              type="number"
+              name="secondPrize"
+              value={formData.secondPrize}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#5865F2] focus:ring-2 focus:ring-[#5865F2]/20 outline-none transition-all"
+              placeholder="15000"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
+              🥉 3rd Prize (₹)
+            </label>
+            <input
+              type="number"
+              name="thirdPrize"
+              value={formData.thirdPrize}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#5865F2] focus:ring-2 focus:ring-[#5865F2]/20 outline-none transition-all"
+              placeholder="10000"
+              required
             />
           </div>
         </div>

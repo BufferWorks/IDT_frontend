@@ -239,6 +239,28 @@ const ContestDetails = () => {
                 <span>₹{contest.entryFee} Registration</span>
               </div>
             </div>
+
+            {(contest.firstPrize ||
+              contest.secondPrize ||
+              contest.thirdPrize) && (
+              <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t border-gray-100">
+                {contest.firstPrize && (
+                  <div className="flex items-center gap-2 text-sm font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-200">
+                    🥇 1st: ₹{contest.firstPrize}
+                  </div>
+                )}
+                {contest.secondPrize && (
+                  <div className="flex items-center gap-2 text-sm font-bold text-gray-700 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200">
+                    🥈 2nd: ₹{contest.secondPrize}
+                  </div>
+                )}
+                {contest.thirdPrize && (
+                  <div className="flex items-center gap-2 text-sm font-bold text-orange-800 bg-orange-50 px-3 py-1.5 rounded-lg border border-orange-200">
+                    🥉 3rd: ₹{contest.thirdPrize}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -339,7 +361,8 @@ const ContestDetails = () => {
                 {
                   label: "Registration Starts",
                   date: contest.registrationStartAt,
-                  passed: new Date() >= parseAsLocal(contest.registrationStartAt),
+                  passed:
+                    new Date() >= parseAsLocal(contest.registrationStartAt),
                 },
                 {
                   label: "Registration Ends",
@@ -361,7 +384,9 @@ const ContestDetails = () => {
                   date: contest.resultsAnnounceAt || contest.votingEndAt, // Fallback if not set
                   passed:
                     new Date() >=
-                    parseAsLocal(contest.resultsAnnounceAt || contest.votingEndAt),
+                    parseAsLocal(
+                      contest.resultsAnnounceAt || contest.votingEndAt,
+                    ),
                 },
               ].map((step, index) => (
                 <div key={index} className="relative flex items-center gap-4">
@@ -860,64 +885,104 @@ const ContestDetails = () => {
                 </div>
 
                 <div className="p-6 space-y-6">
-                  <div className={`p-4 rounded-xl flex items-center justify-between border ${
-                    paymentDetails.status === "SUCCESS" 
-                    ? "bg-green-50 border-green-200" 
-                    : paymentDetails.status === "FAILED"
-                    ? "bg-red-50 border-red-200"
-                    : "bg-orange-50 border-orange-200"
-                  }`}>
+                  <div
+                    className={`p-4 rounded-xl flex items-center justify-between border ${
+                      paymentDetails.status === "SUCCESS"
+                        ? "bg-green-50 border-green-200"
+                        : paymentDetails.status === "FAILED"
+                          ? "bg-red-50 border-red-200"
+                          : "bg-orange-50 border-orange-200"
+                    }`}
+                  >
                     <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                        paymentDetails.status === "SUCCESS" ? "bg-green-500 text-white" :
-                        paymentDetails.status === "FAILED" ? "bg-red-500 text-white" :
-                        "bg-orange-500 text-white"
-                      }`}>
+                      <div
+                        className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                          paymentDetails.status === "SUCCESS"
+                            ? "bg-green-500 text-white"
+                            : paymentDetails.status === "FAILED"
+                              ? "bg-red-500 text-white"
+                              : "bg-orange-500 text-white"
+                        }`}
+                      >
                         <DollarSign size={20} />
                       </div>
                       <div>
-                        <p className={`font-bold uppercase text-sm ${
-                          paymentDetails.status === "SUCCESS" ? "text-green-700" :
-                          paymentDetails.status === "FAILED" ? "text-red-700" :
-                          "text-orange-700"
-                        }`}>{paymentDetails.status}</p>
-                        <p className="text-xs text-gray-500">Transaction Status</p>
+                        <p
+                          className={`font-bold uppercase text-sm ${
+                            paymentDetails.status === "SUCCESS"
+                              ? "text-green-700"
+                              : paymentDetails.status === "FAILED"
+                                ? "text-red-700"
+                                : "text-orange-700"
+                          }`}
+                        >
+                          {paymentDetails.status}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          Transaction Status
+                        </p>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-2xl font-bold text-gray-900">₹{paymentDetails.amount}</p>
+                      <p className="text-2xl font-bold text-gray-900">
+                        ₹{paymentDetails.amount}
+                      </p>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                      <p className="text-xs text-gray-400 uppercase font-bold mb-1">Razorpay Order ID</p>
-                      <p className="font-mono text-sm text-gray-800 break-all">{paymentDetails.razorpayOrderId || "N/A"}</p>
+                      <p className="text-xs text-gray-400 uppercase font-bold mb-1">
+                        Razorpay Order ID
+                      </p>
+                      <p className="font-mono text-sm text-gray-800 break-all">
+                        {paymentDetails.razorpayOrderId || "N/A"}
+                      </p>
                     </div>
                     <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                      <p className="text-xs text-gray-400 uppercase font-bold mb-1">Razorpay Payment ID</p>
-                      <p className="font-mono text-sm text-gray-800 break-all">{paymentDetails.razorpayPaymentId || "N/A"}</p>
+                      <p className="text-xs text-gray-400 uppercase font-bold mb-1">
+                        Razorpay Payment ID
+                      </p>
+                      <p className="font-mono text-sm text-gray-800 break-all">
+                        {paymentDetails.razorpayPaymentId || "N/A"}
+                      </p>
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <div className="flex justify-between py-2 border-b border-gray-50">
-                      <span className="text-gray-500 text-sm">Merchant Order ID</span>
-                      <span className="font-mono text-sm font-medium">{paymentDetails.merchantOrderId}</span>
+                      <span className="text-gray-500 text-sm">
+                        Merchant Order ID
+                      </span>
+                      <span className="font-mono text-sm font-medium">
+                        {paymentDetails.merchantOrderId}
+                      </span>
                     </div>
                     <div className="flex justify-between py-2 border-b border-gray-50">
                       <span className="text-gray-500 text-sm">Paid At</span>
                       <span className="text-sm font-medium">
-                        {paymentDetails.paidAt ? new Date(paymentDetails.paidAt).toLocaleString("en-GB") : "-"}
+                        {paymentDetails.paidAt
+                          ? new Date(paymentDetails.paidAt).toLocaleString(
+                              "en-GB",
+                            )
+                          : "-"}
                       </span>
                     </div>
                     <div className="flex justify-between py-2 border-b border-gray-50">
-                      <span className="text-gray-500 text-sm">Participant Name</span>
-                      <span className="text-sm font-bold text-gray-900">{paymentDetails.userId?.name || "-"}</span>
+                      <span className="text-gray-500 text-sm">
+                        Participant Name
+                      </span>
+                      <span className="text-sm font-bold text-gray-900">
+                        {paymentDetails.userId?.name || "-"}
+                      </span>
                     </div>
                     <div className="flex justify-between py-2">
-                      <span className="text-gray-500 text-sm">Participant Email</span>
-                      <span className="text-sm font-medium">{paymentDetails.userId?.email || "-"}</span>
+                      <span className="text-gray-500 text-sm">
+                        Participant Email
+                      </span>
+                      <span className="text-sm font-medium">
+                        {paymentDetails.userId?.email || "-"}
+                      </span>
                     </div>
                   </div>
                 </div>

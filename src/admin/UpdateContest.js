@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Calendar, DollarSign, Type } from "lucide-react";
+import { Upload, Calendar, DollarSign, Type } from "lucide-react";
 import axios from "axios";
 
 const API = process.env.REACT_APP_BACKEND_URL;
@@ -10,13 +10,18 @@ const UpdateContest = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
+  const [bannerPreview, setBannerPreview] = useState(null);
 
   const [formData, setFormData] = useState({
     name: "",
     prizePool: "",
+    firstPrize: "",
+    secondPrize: "",
+    thirdPrize: "",
     registrationEndAt: "",
     votingEndAt: "",
     resultsAnnounceAt: "",
+    bannerImage: null,
   });
 
   const formatDateForInput = (isoString) => {
@@ -33,10 +38,14 @@ const UpdateContest = () => {
         setFormData({
           name: contest.name || "",
           prizePool: contest.prizePool || "",
+          firstPrize: contest.firstPrize || "",
+          secondPrize: contest.secondPrize || "",
+          thirdPrize: contest.thirdPrize || "",
           registrationEndAt: formatDateForInput(contest.registrationEndAt),
           votingEndAt: formatDateForInput(contest.votingEndAt),
           resultsAnnounceAt: formatDateForInput(contest.resultsAnnounceAt),
         });
+        setBannerPreview(contest.bannerImage || null);
       } catch (error) {
         console.error("Error fetching contest:", error);
         alert("Event not found");
@@ -53,12 +62,29 @@ const UpdateContest = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData({ ...formData, bannerImage: file });
+      setBannerPreview(URL.createObjectURL(file));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await axios.put(`${API}/contests/${id}/update`, formData);
+      const data = new FormData();
+      Object.keys(formData).forEach((key) => {
+        if (key !== 'bannerImage' || formData[key] instanceof File) {
+          data.append(key, formData[key]);
+        }
+      });
+
+      await axios.put(`${API}/contests/${id}/update`, data, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
       alert("Contest updated successfully!");
       navigate("/admin/manage-contests");
     } catch (error) {
@@ -90,6 +116,46 @@ const UpdateContest = () => {
         onSubmit={handleSubmit}
         className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 space-y-8"
       >
+        {/* Banner Upload */}
+        <div className="space-y-4">
+          <label className="block text-sm font-bold text-gray-700">
+            Event Banner
+          </label>
+          <div
+            className={`relative border-2 border-dashed rounded-2xl p-8 text-center transition-all ${bannerPreview ? "border-[#5865F2] bg-blue-50" : "border-gray-300 hover:border-gray-400"}`}
+          >
+            <input
+              type="file"
+              onChange={handleFileChange}
+              accept="image/*"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+            />
+
+            {bannerPreview ? (
+              <div className="relative h-64 w-full">
+                <img
+                  src={bannerPreview}
+                  alt="Preview"
+                  className="w-full h-full object-cover rounded-xl"
+                />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 hover:opacity-100 transition-opacity rounded-xl">
+                  <p className="text-white font-bold">Click to Change Banner</p>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-2 py-8">
+                <div className="mx-auto w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">
+                  <Upload size={24} />
+                </div>
+                <p className="text-gray-600 font-medium">
+                  Click or Drag to Upload New Banner
+                </p>
+                <p className="text-xs text-gray-400">PNG, JPG up to 5MB</p>
+              </div>
+            )}
+          </div>
+        </div>
+
         {/* Basic Info */}
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-2">
@@ -117,6 +183,52 @@ const UpdateContest = () => {
               onChange={handleChange}
               className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#5865F2] focus:ring-2 focus:ring-[#5865F2]/20 outline-none transition-all"
               placeholder="50000"
+              required
+            />
+          </div>
+        </div>
+
+        {/* Prizes Breakdown */}
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
+              🥇 1st Prize (₹)
+            </label>
+            <input
+              type="number"
+              name="firstPrize"
+              value={formData.firstPrize}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#5865F2] focus:ring-2 focus:ring-[#5865F2]/20 outline-none transition-all"
+              placeholder="25000"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
+              🥈 2nd Prize (₹)
+            </label>
+            <input
+              type="number"
+              name="secondPrize"
+              value={formData.secondPrize}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#5865F2] focus:ring-2 focus:ring-[#5865F2]/20 outline-none transition-all"
+              placeholder="15000"
+              required
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-sm font-bold text-gray-700">
+              🥉 3rd Prize (₹)
+            </label>
+            <input
+              type="number"
+              name="thirdPrize"
+              value={formData.thirdPrize}
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#5865F2] focus:ring-2 focus:ring-[#5865F2]/20 outline-none transition-all"
+              placeholder="10000"
               required
             />
           </div>
