@@ -18,6 +18,7 @@ const UpdateContest = () => {
     firstPrize: "",
     secondPrize: "",
     thirdPrize: "",
+    registrationStartAt: "",
     registrationEndAt: "",
     votingEndAt: "",
     resultsAnnounceAt: "",
@@ -41,6 +42,7 @@ const UpdateContest = () => {
           firstPrize: contest.firstPrize || "",
           secondPrize: contest.secondPrize || "",
           thirdPrize: contest.thirdPrize || "",
+          registrationStartAt: formatDateForInput(contest.registrationStartAt),
           registrationEndAt: formatDateForInput(contest.registrationEndAt),
           votingEndAt: formatDateForInput(contest.votingEndAt),
           resultsAnnounceAt: formatDateForInput(contest.resultsAnnounceAt),
@@ -239,20 +241,34 @@ const UpdateContest = () => {
           <div className="space-y-4">
             <h3 className="font-bold text-gray-900 flex items-center gap-2">
               <Calendar size={18} className="text-[#5865F2]" /> Registration
-              End
             </h3>
-            <div className="space-y-1">
-              <label className="text-xs font-semibold text-gray-500">
-                End Date
-              </label>
-              <input
-                type="datetime-local"
-                name="registrationEndAt"
-                value={formData.registrationEndAt}
-                onChange={handleChange}
-                className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-[#5865F2] outline-none"
-                required
-              />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <label className="text-xs font-semibold text-gray-500">
+                  Start Date
+                </label>
+                <input
+                  type="datetime-local"
+                  name="registrationStartAt"
+                  value={formData.registrationStartAt}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-[#5865F2] outline-none"
+                  required
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-semibold text-gray-500">
+                  End Date
+                </label>
+                <input
+                  type="datetime-local"
+                  name="registrationEndAt"
+                  value={formData.registrationEndAt}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 rounded-lg border border-gray-200 text-sm focus:border-[#5865F2] outline-none"
+                  required
+                />
+              </div>
             </div>
           </div>
 
