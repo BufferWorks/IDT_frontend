@@ -54,7 +54,7 @@ const ContestDetails = () => {
       try {
         const [contestRes, participantsRes] = await Promise.all([
           axios.get(`${API}/contests/${id}`),
-          axios.get(`${API}/contests/${id}/participants`),
+          axios.get(`${API}/contests/${id}/participants?admin=true`),
         ]);
         setContest(contestRes.data.contest);
         setParticipants(participantsRes.data.participants || []);
@@ -84,6 +84,28 @@ const ContestDetails = () => {
   const closeEntryModal = () => {
     setSelectedEntryId(null);
     setEntryDetails(null);
+  };
+
+  const handleVerification = async (entryId, status) => {
+    try {
+      await axios.patch(`${API}/contests/entries/${entryId}/verification`, { status });
+      // Update local state without reloading the page
+      setParticipants((prev) => 
+        prev.map((p) => {
+          if (p.entryId === entryId) {
+             return { ...p, verificationStatus: status };
+          }
+          return p;
+        })
+      );
+      if (entryDetails && entryDetails._id === entryId) {
+        setEntryDetails(prev => ({ ...prev, verificationStatus: status }));
+      }
+      alert(`Entry marked as ${status}`);
+    } catch (err) {
+      console.error("Error updating verification:", err);
+      alert("Failed to update status");
+    }
   };
 
   const handlePaymentClick = async (paymentId) => {
@@ -542,6 +564,9 @@ const ContestDetails = () => {
                   <th className="px-6 py-4 font-bold text-gray-500 text-sm uppercase">
                     Submission Date
                   </th>
+                  <th className="px-6 py-4 font-bold text-gray-500 text-sm uppercase">
+                    Verification
+                  </th>
                   <th className="px-6 py-4 font-bold text-gray-500 text-sm uppercase text-right">
                     Actions
                   </th>
@@ -579,20 +604,55 @@ const ContestDetails = () => {
                     <td className="px-6 py-4 text-gray-500">
                       {new Date(entry.createdAt).toLocaleDateString("en-GB")}
                     </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold ${
+                            entry.verificationStatus === 'VERIFIED'
+                              ? 'bg-green-100 text-green-700'
+                              : entry.verificationStatus === 'REJECTED'
+                                ? 'bg-red-100 text-red-700'
+                                : 'bg-orange-100 text-orange-700'
+                          }`}
+                        >
+                          {entry.verificationStatus || 'PENDING'}
+                        </span>
+                      </div>
+                    </td>
                     <td className="px-6 py-4 text-right">
-                      <button
-                        onClick={() => fetchEntryDetails(entry.entryId)}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-[#5865F2] hover:bg-[#4752c4] text-white rounded-lg text-sm font-medium transition-colors shadow-sm shadow-blue-200"
-                      >
-                        <Eye size={16} /> View Details
-                      </button>
+                      <div className="flex items-center justify-end gap-2">
+                        {entry.verificationStatus !== 'VERIFIED' && (
+                          <button
+                            onClick={() => handleVerification(entry.entryId, 'VERIFIED')}
+                            className="p-2 bg-green-50 text-green-600 hover:bg-green-100 rounded-lg transition-colors"
+                            title="Verify"
+                          >
+                            ✓
+                          </button>
+                        )}
+                        {entry.verificationStatus !== 'REJECTED' && (
+                          <button
+                            onClick={() => handleVerification(entry.entryId, 'REJECTED')}
+                            className="p-2 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg transition-colors"
+                            title="Reject"
+                          >
+                            ✗
+                          </button>
+                        )}
+                        <button
+                          onClick={() => fetchEntryDetails(entry.entryId)}
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-[#5865F2] hover:bg-[#4752c4] text-white rounded-lg text-sm font-medium transition-colors shadow-sm shadow-blue-200"
+                        >
+                          <Eye size={16} /> View Details
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
                 {filteredEntries.length === 0 && (
                   <tr>
                     <td
-                      colSpan="3"
+                      colSpan="4"
                       className="px-6 py-8 text-center text-gray-400"
                     >
                       No entries found matching your search.
@@ -733,6 +793,43 @@ const ContestDetails = () => {
                           </a>
                         </div>
                       )}
+                    </div>
+                  </div>
+
+                  {/* Verification Actions */}
+                  <div className="mt-8 pt-6 border-t border-gray-100">
+                    <h4 className="text-sm font-bold text-gray-500 uppercase mb-4 text-center">
+                      Content Verification
+                    </h4>
+                    <div className="flex gap-4 max-w-md mx-auto">
+                      <button
+                        onClick={() => {
+                          handleVerification(entryDetails._id, 'VERIFIED');
+                          closeEntryModal();
+                        }}
+                        className={`flex-1 py-3 font-bold rounded-xl shadow-sm transition-all flex justify-center items-center gap-2 ${
+                          entryDetails.verificationStatus === 'VERIFIED'
+                            ? 'bg-green-100 text-green-700 cursor-default'
+                            : 'bg-green-600 hover:bg-green-700 text-white'
+                        }`}
+                        disabled={entryDetails.verificationStatus === 'VERIFIED'}
+                      >
+                        ✓ {entryDetails.verificationStatus === 'VERIFIED' ? 'Verified' : 'Verify Entry'}
+                      </button>
+                      <button
+                        onClick={() => {
+                          handleVerification(entryDetails._id, 'REJECTED');
+                          closeEntryModal();
+                        }}
+                        className={`flex-1 py-3 font-bold rounded-xl shadow-sm transition-all flex justify-center items-center gap-2 ${
+                          entryDetails.verificationStatus === 'REJECTED'
+                            ? 'bg-red-100 text-red-700 cursor-default'
+                            : 'bg-red-600 hover:bg-red-700 text-white'
+                        }`}
+                        disabled={entryDetails.verificationStatus === 'REJECTED'}
+                      >
+                        ✗ {entryDetails.verificationStatus === 'REJECTED' ? 'Rejected' : 'Reject Entry'}
+                      </button>
                     </div>
                   </div>
                 </div>
