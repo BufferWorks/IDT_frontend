@@ -10,10 +10,11 @@ import {
   X,
   Image,
   Bell,
+  MapPin,
 } from "lucide-react";
 
 const AdminLayout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(window.innerWidth >= 1024);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -25,6 +26,13 @@ const AdminLayout = () => {
       navigate("/admin/login");
     }
   }, [navigate]);
+
+  // Close sidebar on mobile when route changes
+  React.useEffect(() => {
+    if (window.innerWidth < 1024) {
+      setIsSidebarOpen(false);
+    }
+  }, [location.pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
@@ -56,6 +64,11 @@ const AdminLayout = () => {
       name: "Notifications",
       path: "/admin/send-notification",
       icon: <Bell size={20} />,
+    },
+    {
+      name: "Physical Events",
+      path: "/admin/manage-physical-events",
+      icon: <MapPin size={20} />,
     },
   ];
 

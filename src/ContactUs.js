@@ -1,11 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 const ContactUs = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
+      <Helmet>
+        <title>Contact Us - IDT Events</title>
+        <meta name="description" content="Get in touch with the IDT Event Management team for support, inquiries, or feedback." />
+      </Helmet>
       <div className="max-w-6xl mx-auto px-6 py-12">
         <Link
           to="/"

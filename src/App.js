@@ -10,6 +10,7 @@ import AboutUs from "./AboutUs";
 import ContactUs from "./ContactUs";
 import DeletionRequest from "./DeletionRequest";
 import PromoteRedirect from "./PromoteRedirect";
+import PhysicalForm from "./PhysicalForm";
 
 // Admin Imports
 import AdminLayout from "./admin/AdminLayout";
@@ -23,6 +24,11 @@ import ManageGallery from "./admin/ManageGallery";
 import SendNotification from "./admin/SendNotification";
 import ContestRedirect from "./ContestRedirect";
 
+// Physical Events
+import ManagePhysicalEvents from "./admin/ManagePhysicalEvents";
+import CreatePhysicalEvent from "./admin/CreatePhysicalEvent";
+import PhysicalSubmissions from "./admin/PhysicalSubmissions";
+
 function App() {
   return (
     <BrowserRouter>
@@ -33,6 +39,7 @@ function App() {
         <Route path="/promote/:id" element={<PromoteRedirect />} />
         <Route path="/vote/:slugId" element={<PromoteRedirect />} />
         <Route path="/contest/:id" element={<ContestRedirect />} />
+        <Route path="/form/:id" element={<PhysicalForm />} />
 
         {/* Static Pages */}
         <Route path="/privacy" element={<PrivacyPolicy />} />
@@ -51,6 +58,21 @@ function App() {
           <Route path="send-notification" element={<SendNotification />} />
           <Route path="contest/:id" element={<ContestDetails />} />
           <Route path="update-contest/:id" element={<UpdateContest />} />
+
+          {/* Physical Events */}
+          <Route
+            path="manage-physical-events"
+            element={<ManagePhysicalEvents />}
+          />
+          <Route
+            path="create-physical-event"
+            element={<CreatePhysicalEvent />}
+          />
+          <Route
+            path="physical-submissions/:id"
+            element={<PhysicalSubmissions />}
+          />
+
           {/* Default redirect to dashboard */}
           <Route index element={<Navigate to="dashboard" replace />} />
         </Route>

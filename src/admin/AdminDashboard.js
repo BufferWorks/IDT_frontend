@@ -77,31 +77,31 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8">Dashboard</h1>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-10">
         {stats.map((stat, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4"
+            className="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4"
           >
-            <div className={`p-4 rounded-xl ${stat.bg}`}>{stat.icon}</div>
+            <div className={`p-3 md:p-4 rounded-xl w-fit ${stat.bg}`}>{stat.icon}</div>
             <div>
-              <p className="text-sm text-gray-500 font-medium">{stat.label}</p>
-              <h3 className="text-2xl font-bold text-gray-900">{stat.value}</h3>
+              <p className="text-xs md:text-sm text-gray-500 font-medium">{stat.label}</p>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900">{stat.value}</h3>
             </div>
           </motion.div>
         ))}
       </div>
 
       {/* Recent Activity Section */}
-      <div className="grid lg:grid-cols-2 gap-8">
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">
+      <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
+        <div className="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-gray-100">
+          <h2 className="text-base md:text-lg font-bold text-gray-900 mb-4">
             Recent Events
           </h2>
           {recentEvents.length > 0 ? (
@@ -139,8 +139,8 @@ const AdminDashboard = () => {
             </div>
           )}
         </div>
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">
+        <div className="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-gray-100">
+          <h2 className="text-base md:text-lg font-bold text-gray-900 mb-4">
             Recent Entries
           </h2>
           <div className="text-center py-10 text-gray-400">

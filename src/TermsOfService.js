@@ -1,11 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 const TermsOfService = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
+      <Helmet>
+        <title>Terms of Service - IDT Events</title>
+        <meta name="description" content="Read the Terms of Service for IDT Event Management to understand the rules and guidelines for participating in events." />
+      </Helmet>
       <div className="max-w-4xl mx-auto px-6 py-12">
         <Link
           to="/"

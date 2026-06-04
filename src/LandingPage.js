@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   ArrowRight,
   ChevronRight,
@@ -98,6 +99,18 @@ const LandingPage = () => {
 
   return (
     <div className="font-sans text-gray-900 bg-white">
+      <Helmet>
+        <title>IDT Events - Unleash Your Talent</title>
+        <meta
+          name="description"
+          content="The ultimate platform to participate in model events, showcase your skills, and receive exclusive talent grants."
+        />
+        <meta property="og:title" content="IDT Events - Unleash Your Talent" />
+        <meta
+          property="og:description"
+          content="The premier platform for organizing and participating in digital talent events."
+        />
+      </Helmet>
       <Navbar />
       {/* --- HERO SECTION --- */}
       <section className="relative overflow-hidden bg-[#5865F2] text-white pt-24">
@@ -120,7 +133,14 @@ const LandingPage = () => {
               your skills, and receive exclusive talent grants.
             </p>
             <div className="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
-              {/* Download button removed */}
+              <a
+                href="https://play.google.com/store/apps/details?id=com.idt.app"
+                target="_blank"
+                rel="noreferrer"
+                className="bg-white text-[#5865F2] px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all"
+              >
+                Download App
+              </a>
               <Link
                 to="/about"
                 className="border-2 border-white/30 hover:bg-white/10 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all"
@@ -307,7 +327,14 @@ const LandingPage = () => {
               Join thousands of participants and showcase your talent on IDT
               Events today.
             </p>
-            {/* Download button removed */}
+            <a
+              href="https://play.google.com/store/apps/details?id=com.idt.app"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block bg-white text-[#5865F2] px-10 py-5 rounded-full font-bold text-xl hover:shadow-2xl hover:scale-105 transition-all"
+            >
+              Get Started Now
+            </a>
           </div>
           {/* Decorative Circles */}
           <div className="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
@@ -390,7 +417,14 @@ const Navbar = () => (
       </div>
 
       <div className="flex items-center gap-6">
-        {/* Download button removed */}
+        <a
+          href="https://play.google.com/store/apps/details?id=com.idt.app"
+          target="_blank"
+          rel="noreferrer"
+          className="hidden md:inline-block bg-white text-[#5865F2] px-6 py-2 rounded-full font-bold text-sm hover:shadow-lg transition-all"
+        >
+          Download App
+        </a>
       </div>
     </div>
   </nav>

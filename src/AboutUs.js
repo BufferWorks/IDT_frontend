@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Users, Target, Heart } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 const AboutUs = () => {
@@ -24,6 +25,10 @@ const AboutUs = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
+      <Helmet>
+        <title>About Us - IDT Events</title>
+        <meta name="description" content="Learn more about IDT Event Management, our mission, and the team behind the ultimate platform for talent contests." />
+      </Helmet>
       <div className="max-w-6xl mx-auto px-6 py-12">
         <Link
           to="/"
