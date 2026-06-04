@@ -494,17 +494,21 @@ const ContestDetails = () => {
                         {new Date(p.createdAt).toLocaleDateString("en-GB")}
                       </td>
                       <td className="px-6 py-4 text-gray-400 text-sm font-mono">
-                        {p.paymentId ? (
+                        {p.isPaid ? (
                           <button
                             onClick={() => handlePaymentClick(p.paymentId)}
                             className="text-[#5865F2] hover:text-[#4752c4] hover:underline font-bold transition-all"
                             title="View Payment Details"
                           >
-                            {p.paymentId}
+                            {p.paymentId || "PAID"}
                           </button>
-                        ) : (
-                          <span className="text-green-600 bg-green-50 px-2 py-1 rounded">
+                        ) : contest?.entryFee === 0 ? (
+                          <span className="text-green-600 bg-green-50 px-2 py-1 rounded font-bold">
                             FREE
+                          </span>
+                        ) : (
+                          <span className="text-orange-600 bg-orange-50 px-2 py-1 rounded font-bold text-xs uppercase tracking-wider">
+                            UNPAID
                           </span>
                         )}
                       </td>
@@ -565,6 +569,9 @@ const ContestDetails = () => {
                     Submission Date
                   </th>
                   <th className="px-6 py-4 font-bold text-gray-500 text-sm uppercase">
+                    Payment Status
+                  </th>
+                  <th className="px-6 py-4 font-bold text-gray-500 text-sm uppercase">
                     Verification
                   </th>
                   <th className="px-6 py-4 font-bold text-gray-500 text-sm uppercase text-right">
@@ -603,6 +610,21 @@ const ContestDetails = () => {
                     </td>
                     <td className="px-6 py-4 text-gray-500">
                       {new Date(entry.createdAt).toLocaleDateString("en-GB")}
+                    </td>
+                    <td className="px-6 py-4">
+                        {entry.isPaid ? (
+                          <span className="text-green-600 bg-green-50 px-2.5 py-1 rounded-full font-bold text-xs uppercase tracking-wider">
+                            PAID
+                          </span>
+                        ) : contest?.entryFee === 0 ? (
+                          <span className="text-green-600 bg-green-50 px-2.5 py-1 rounded-full font-bold text-xs uppercase tracking-wider">
+                            FREE
+                          </span>
+                        ) : (
+                          <span className="text-orange-600 bg-orange-50 px-2.5 py-1 rounded-full font-bold text-xs uppercase tracking-wider">
+                            UNPAID
+                          </span>
+                        )}
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
