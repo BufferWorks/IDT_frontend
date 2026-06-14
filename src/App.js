@@ -28,6 +28,7 @@ import ContestRedirect from "./ContestRedirect";
 import ManagePhysicalEvents from "./admin/ManagePhysicalEvents";
 import CreatePhysicalEvent from "./admin/CreatePhysicalEvent";
 import PhysicalSubmissions from "./admin/PhysicalSubmissions";
+import ManageReferrals from "./admin/ManageReferrals";
 
 function App() {
   return (
@@ -72,6 +73,9 @@ function App() {
             path="physical-submissions/:id"
             element={<PhysicalSubmissions />}
           />
+
+          {/* Referrals */}
+          <Route path="referrals" element={<ManageReferrals />} />
 
           {/* Default redirect to dashboard */}
           <Route index element={<Navigate to="dashboard" replace />} />

@@ -11,6 +11,7 @@ import {
   Image,
   Bell,
   MapPin,
+  Share2,
 } from "lucide-react";
 
 const AdminLayout = () => {
@@ -69,6 +70,11 @@ const AdminLayout = () => {
       name: "Physical Events",
       path: "/admin/manage-physical-events",
       icon: <MapPin size={20} />,
+    },
+    {
+      name: "Referrals",
+      path: "/admin/referrals",
+      icon: <Share2 size={20} />,
     },
   ];
 

@@ -9,7 +9,10 @@ const PrivacyPolicy = () => {
     <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
       <Helmet>
         <title>Privacy Policy - IDT Events</title>
-        <meta name="description" content="Read the Privacy Policy for IDT Event Management to understand how we collect, use, and protect your data." />
+        <meta
+          name="description"
+          content="Read the Privacy Policy for IDT Event Management to understand how we collect, use, and protect your data."
+        />
       </Helmet>
       <div className="max-w-4xl mx-auto px-6 py-12">
         <Link
